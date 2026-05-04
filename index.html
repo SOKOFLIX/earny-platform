@@ -9,29 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* SaaS Palette */
+            /* SaaS Light Mode Palette */
             --bg-base: #FFFFFF;
             --bg-surface: #F4F6F8; 
             --bg-card: #FFFFFF;
-            
             --text-main: #202223; 
             --text-muted: #6D7175; 
-            
-            --accent-primary: #008060; 
+            --accent-primary: #008060; /* Shopify Green */
             --accent-hover: #006e52;
             --accent-dark: #000000;
-            
             --border-color: #E1E3E5; 
             --shadow-subtle: 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 5px rgba(0, 0, 0, 0.02);
             --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.08);
-            
-            /* Billo Aesthetic Palette */
-            --accent-billo: #D1FF00;
-            --accent-billo-gradient: linear-gradient(135deg, #E2FF4D, #C2FF00);
-            --radius-lg: 32px;
-            --radius-md: 20px;
-            --radius-btn: 50px;
-            --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.06);
+            --radius-lg: 24px;
+            --radius-md: 12px;
+            --radius-btn: 6px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -42,348 +34,232 @@
             overflow-x: hidden; position: relative; line-height: 1.5;
         }
 
-        /* --- Loading Screen --- */
-        #loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-base); z-index: 9999; display: flex;
-            justify-content: center; align-items: center; transition: opacity 0.5s ease;
-        }
-        .loader-logo {
-            font-size: 2.8rem; font-weight: 800; letter-spacing: -2px; color: var(--text-main);
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-        .loader-logo span { color: var(--accent-primary); }
-        @keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
-
-        /* Typography */
         h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.03em; color: var(--text-main); }
-        .logo { font-weight: 800; font-size: 1.8rem; letter-spacing: -1px; }
-
-        /* --- Floating Lime Blobs --- */
-        .blob {
-            position: absolute; background: var(--accent-billo); 
-            filter: blur(50px); opacity: 0.4; z-index: -1;
-            border-radius: 50px; pointer-events: none;
-        }
-        .blob-1 { width: 300px; height: 150px; top: 5%; left: -5%; transform: rotate(-15deg); }
-        .blob-2 { width: 400px; height: 200px; top: 15%; right: -10%; border-radius: 100px; }
-        .blob-3 { width: 250px; height: 250px; top: 45%; left: -5%; border-radius: 50%; opacity: 0.3; }
+        .text-green { color: var(--accent-primary); }
 
         /* --- Navigation --- */
         nav {
             position: fixed; top: 0; width: 100%; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid transparent;
             transition: border 0.3s ease;
         }
         nav.scrolled { border-bottom: 1px solid var(--border-color); }
-        .logo { font-size: 1.8rem; letter-spacing: -1.5px; }
-        .logo span { color: var(--accent-billo); text-shadow: 1px 1px 0px #000; }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1.5px; text-decoration: none; color: var(--text-main); }
+        .logo span { color: var(--accent-primary); }
         .nav-links { display: flex; align-items: center; }
-        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 2.5rem; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { opacity: 0.6; }
-        .nav-actions { display: flex; align-items: center; margin-left: 3rem; }
-        .login-link { font-weight: 500; margin-right: 1.5rem; text-decoration: none; color: var(--text-main); }
+        .nav-links a { color: var(--text-muted); text-decoration: none; margin-left: 2rem; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text-main); }
 
         /* --- Buttons --- */
         .btn { 
             display: inline-flex; align-items: center; justify-content: center; 
-            background: var(--accent-dark); color: #ffffff; padding: 1rem 2rem; 
+            background: var(--accent-dark); color: #ffffff; padding: 0.9rem 1.8rem; 
             font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: var(--radius-btn); 
-            transition: all 0.2s ease; cursor: pointer; border: none; 
+            transition: all 0.2s ease; cursor: pointer; border: 1px solid transparent; 
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .btn-lime { background: var(--accent-billo); color: var(--text-main); }
-        .btn-lime:hover { background: #BDE600; }
-        .btn-outline { background: transparent; color: var(--text-main); border: 2px solid var(--border-color); }
-        .btn-outline:hover { border-color: var(--text-main); box-shadow: none; transform: none;}
+        .btn:hover { background: #333333; box-shadow: var(--shadow-subtle); transform: translateY(-2px); }
+        .btn-green { background: var(--accent-primary); }
+        .btn-green:hover { background: var(--accent-hover); }
+        .btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border-color); }
+        .btn-outline:hover { background: var(--bg-surface); }
+
+        /* Mobile Adjustments for Nav */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            nav { padding: 1rem 5%; }
+            .btn { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
+        }
 
         /* --- Hero --- */
-        .hero { text-align: center; padding: 12rem 1rem 6rem 1rem; max-width: 900px; margin: 0 auto; position: relative; }
-        .hero-tag { display: inline-block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
-        h1 { font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; }
-        h1 .highlight { position: relative; display: inline-block; z-index: 1; }
-        h1 .highlight::after { content: ''; position: absolute; bottom: 10px; left: -5%; width: 110%; height: 40%; background: var(--accent-billo); z-index: -1; border-radius: 10px; transform: rotate(-2deg); }
-        .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .hero { text-align: center; padding: 10rem 1rem 5rem 1rem; max-width: 900px; margin: 0 auto; }
+        h1 { font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; letter-spacing: -2px; }
+        .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
-
-        /* --- Logos / Partners --- */
-        .partners-section { text-align: center; padding: 2rem 5% 5rem 5%; }
-        .partners-section p { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 1px;}
         
-        .partner-logos { display: flex; justify-content: center; gap: 4.5rem; flex-wrap: wrap; align-items: center; opacity: 0.85; }
-        .brand-lgnd { font-weight: 900; font-size: 2rem; font-style: italic; letter-spacing: -2px; color: #111111; margin: 0; }
-        .brand-lucen { font-weight: 300; font-size: 1.4rem; letter-spacing: 6px; color: #555555; text-transform: uppercase; margin: 0; }
-        .brand-goosedrop { font-weight: 800; font-size: 1.6rem; letter-spacing: -0.5px; color: #FF5A5F; text-transform: lowercase; display: flex; align-items: center; gap: 4px; margin: 0; }
-        .brand-aurora { font-weight: 700; font-size: 1.6rem; letter-spacing: 1px; background: linear-gradient(90deg, #A18CD1 0%, #FBC2EB 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase; margin: 0; }
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .hero-buttons { flex-direction: column; width: 100%; align-items: center; }
+            .hero-buttons .btn { width: 100%; max-width: 300px; }
+        }
 
         /* --- Universal Sections --- */
         section { padding: 6rem 5%; max-width: 1250px; margin: 0 auto; }
+        .bg-light { background: var(--bg-surface); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         .section-header { text-align: center; margin-bottom: 4rem; }
-        .section-title { font-size: 3rem; margin-bottom: 1rem; }
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; letter-spacing: -1px; }
         .section-desc { color: var(--text-muted); max-width: 600px; line-height: 1.6; font-size: 1.1rem; margin: 0 auto; }
 
-        /* --- Split Feature Cards --- */
-        .split-features { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
-        @media (max-width: 900px) { .split-features { grid-template-columns: 1fr; } }
-        
-        .feature-card { border-radius: var(--radius-lg); padding: 4rem 3rem; display: flex; flex-direction: column; transition: transform 0.3s ease; }
-        .feature-card:hover { transform: translateY(-5px); }
-        .feature-card.white { background: var(--bg-card); box-shadow: var(--shadow-soft); border: 1px solid var(--border-color); }
-        .feature-card.lime { background: var(--accent-billo-gradient); border: none; }
-        
-        .feature-card h3 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .feature-card .sub-h3 { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; }
-        .feature-card.lime .sub-h3 { color: rgba(0,0,0,0.6); }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        @media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .grid-3 { grid-template-columns: 1fr; } }
 
-        .check-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: auto; }
-        @media (max-width: 600px) { .check-list { grid-template-columns: 1fr; } }
-        .check-item { display: flex; align-items: flex-start; gap: 12px; }
-        .check-icon { background: #FFFFFF; color: var(--text-main); width: 24px; height: 24px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 0.8rem; font-weight: bold; flex-shrink: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .feature-card.white .check-icon { background: var(--accent-billo); }
-        .check-text strong { display: block; font-size: 1rem; margin-bottom: 0.2rem; }
-        .check-text span { font-size: 0.9rem; color: var(--text-muted); }
-        .feature-card.lime .check-text span { color: rgba(0,0,0,0.7); }
+        /* --- Cards --- */
+        .saas-card { 
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); 
+            padding: 2.5rem; display: flex; flex-direction: column; transition: all 0.2s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .saas-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: #c9cccf; }
+        .saas-card h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .saas-card p { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.6; flex-grow: 1; font-size: 0.95rem; }
 
         /* --- Vertical Brand Cards --- */
-        .vertical-brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        @media (max-width: 900px) { .vertical-brands { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .vertical-brands { grid-template-columns: 1fr; } }
-
         .v-card {
-            background: var(--bg-surface); border-radius: var(--radius-lg); padding: 2.5rem 2rem;
+            background: var(--bg-surface); border-radius: var(--radius-md); padding: 2.5rem 2rem;
             text-align: center; border: 1px solid var(--border-color);
-            position: relative; overflow: hidden; height: 450px; display: flex; flex-direction: column; justify-content: space-between;
+            display: flex; flex-direction: column; justify-content: space-between; height: 400px;
+            transition: all 0.2s ease;
         }
-        .v-card-tag { display: inline-block; background: #FFFFFF; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
+        .v-card:hover { border-color: var(--accent-primary); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+        .v-card-tag { display: inline-block; background: #FFFFFF; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; border: 1px solid var(--border-color); margin-bottom: 1.5rem; }
         
-        .v-card .brand-lgnd { font-size: 2.8rem; margin-bottom: 0.5rem; z-index: 2; position: relative; }
-        .v-card .brand-lucen { font-size: 1.8rem; margin-bottom: 0.5rem; z-index: 2; position: relative; }
-        .v-card .brand-goosedrop { font-size: 2.4rem; justify-content: center; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+        .brand-lgnd { font-weight: 900; font-size: 2.8rem; font-style: italic; letter-spacing: -2px; color: #111111; margin-bottom: 0.5rem; }
+        .brand-lucen { font-weight: 300; font-size: 1.8rem; letter-spacing: 6px; color: #555555; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .brand-goosedrop { font-weight: 800; font-size: 2.2rem; letter-spacing: -0.5px; color: #FF5A5F; text-transform: lowercase; margin-bottom: 0.5rem; }
         
-        .v-card p { color: var(--text-muted); font-size: 0.95rem; z-index: 2; position: relative;}
-        .v-card .btn { width: 100%; margin-top: auto; z-index: 2; position: relative; }
-        .v-card::before { content: ''; position: absolute; bottom: -20%; right: -20%; width: 200px; height: 200px; background: rgba(209, 255, 0, 0.2); border-radius: 50%; filter: blur(30px); }
+        .v-card p { color: var(--text-muted); font-size: 0.95rem; }
 
         /* --- Calculator --- */
-        .calculator-wrapper { background: var(--bg-surface); border-radius: var(--radius-lg); padding: 5rem; display: flex; gap: 4rem; align-items: center; border: 1px solid var(--border-color); }
-        @media (max-width: 900px) { .calculator-wrapper { flex-direction: column; padding: 2rem; } }
-        
-        .calc-left { flex: 1; }
-        .calc-left h3 { font-size: 2.5rem; margin-bottom: 1rem; }
-        
-        .calc-right { flex: 1; background: #FFFFFF; padding: 3rem; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); width: 100%; }
+        .calculator-container { 
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); 
+            padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+            box-shadow: var(--shadow-subtle);
+        }
         .calc-input-group { margin-bottom: 2rem; }
         .calc-input-group label { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 1rem; color: var(--text-main); }
+        .calc-input-group span { color: var(--accent-primary); font-weight: 700; }
         input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; background: var(--bg-surface); border-radius: 4px; }
-        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: var(--text-main); margin-top: -8px; cursor: pointer; border: 4px solid var(--accent-billo); }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: var(--border-color); border-radius: 4px; border: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; border: none; height: 20px; width: 20px; border-radius: 50%; background: var(--accent-primary); margin-top: -7px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: transform 0.1s; }
+        input[type=range]::-webkit-slider-thumb:active { transform: scale(1.1); }
         
-        .calc-result { border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; }
-        .calc-result p { color: var(--text-muted); font-weight: 500; margin-bottom: 0.5rem; }
-        .calc-result .total { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
+        .calc-result { text-align: center; padding: 3rem 2rem; background: var(--bg-surface); border-radius: var(--radius-md); border: 1px solid var(--border-color); }
+        .calc-result .total { font-size: 2.8rem; font-weight: 800; color: var(--text-main); line-height: 1; margin-bottom: 1.5rem; letter-spacing: -1px;}
+        
+        @media (max-width: 768px) { .calculator-container { grid-template-columns: 1fr; padding: 2rem; gap: 2rem; } .calc-result .total { font-size: 2.2rem; } }
 
-        /* --- Banner CTA --- */
-        .banner-cta { background: var(--bg-card); border-radius: var(--radius-lg); padding: 4rem; text-align: center; border: 1px solid var(--border-color); box-shadow: var(--shadow-soft); margin: 6rem auto; max-width: 1000px; position: relative; overflow: hidden; }
-        .banner-cta h2 { font-size: 2.8rem; margin-bottom: 1.5rem; position: relative; z-index: 2;}
-        .banner-cta::before { content: ''; position: absolute; left: 0; top: 0; width: 150px; height: 100%; background: var(--accent-billo); opacity: 0.2; filter: blur(40px); border-radius: 50%; }
-        .banner-cta::after { content: ''; position: absolute; right: 0; top: 0; width: 150px; height: 100%; background: var(--accent-billo); opacity: 0.2; filter: blur(40px); border-radius: 50%; }
-
-        /* --- Mega Footer (Billo App Style) --- */
-        footer { padding: 5rem 5% 2rem 5%; border-top: 1px solid var(--border-color); background: var(--bg-base); }
+        /* --- Mega Footer --- */
+        footer { padding: 4rem 5% 2rem 5%; border-top: 1px solid var(--border-color); background: var(--bg-base); }
         .footer-top { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: wrap; }
-        .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; flex: 2; min-width: 600px; }
-        @media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(2, 1fr); min-width: 100%; } .footer-top { flex-direction: column; } }
-        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; flex: 2; min-width: 300px; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } .footer-top { flex-direction: column; } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
         
-        .footer-col h4 { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem; letter-spacing: 0; }
+        .footer-col h4 { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.5px;}
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 1.2rem; }
+        .footer-col li { margin-bottom: 1rem; }
         .footer-col a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: opacity 0.2s; }
-        .footer-col a:hover { opacity: 0.6; }
+        .footer-col a:hover { color: var(--accent-primary); }
 
         .footer-brand { flex: 1; max-width: 350px; }
         .footer-brand .footer-logo { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1.5px; }
+        .footer-brand .footer-logo span { color: var(--accent-primary); }
         .footer-brand p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; font-weight: 500;}
         
-        .experts-in { padding-top: 1.5rem; border-top: 1px solid var(--border-color); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 0.5rem;}
+        .experts-in { padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.8rem;}
         .experts-in span { font-size: 0.85rem; color: var(--text-muted); }
-        .experts-in strong { font-size: 1rem; font-weight: 700; }
-        
-        .app-links-section { margin-top: 2rem; }
-        .app-links-section > a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; margin-bottom: 1rem; display: inline-block; font-weight: 500;}
-        .app-buttons { display: flex; gap: 1rem; }
-        .app-btn { background: transparent; border: 1px solid var(--border-color); border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; color: var(--text-main); }
-        .app-btn:hover { background: var(--bg-surface); }
+        .svg-icon { height: 20px; width: auto; fill: var(--text-main); } 
 
-        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 4rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 2rem; }
-        .social-icons { display: flex; gap: 1rem; }
-        .social-icon { width: 36px; height: 36px; background: var(--bg-surface); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--text-main); text-decoration: none; font-weight: bold; font-size: 0.85rem; transition: background 0.2s; }
-        .social-icon:hover { background: #e0e0e0; }
-        
-        .footer-legal { text-align: right; }
-        .legal-links { margin-bottom: 0.5rem; display: flex; justify-content: flex-end; gap: 1.5rem; }
-        .legal-links a { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
-        .legal-links a:hover { opacity: 0.6; }
-        .footer-legal p { color: var(--text-muted); font-size: 0.8rem; }
-        @media (max-width: 768px) { .footer-bottom { flex-direction: column; align-items: center; text-align: center; } .footer-legal { text-align: center; } .legal-links { justify-content: center; } }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom p { color: var(--text-muted); font-size: 0.85rem; }
 
-        /* --- Reveal Animation --- */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <!-- Background Blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-
-    <div id="loader">
-        <div class="loader-logo">earny<span>.</span></div>
-    </div>
-
     <nav id="navbar">
-        <div class="logo">earny<span>.</span></div>
+        <a href="#" class="logo">earny<span>.</span></a>
         <div class="nav-links">
             <a href="#platform">The Platform</a>
             <a href="#brands">Our Brands</a>
             <a href="#calculator">Earnings</a>
         </div>
-        <div class="nav-actions">
-            <a href="#" class="login-link">Login</a>
-            <button class="btn">Sign up for free</button>
-        </div>
+        <!-- REPLACE THIS WITH YOUR SHOPIFY LINK -->
+        <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-green">Apply Now</a>
     </nav>
 
     <main class="hero reveal">
-        <span class="hero-tag">For UGC Creators & Media Buyers</span>
-        <h1>Turn <span class="highlight">your content</span> into a predictable income stream</h1>
-        <p class="subtitle">Earny is a unified platform connecting performance creators with vetted e-commerce brands. Get products at cost, run organic or paid campaigns, and keep 40% of the revenue.</p>
+        <h1>Decentralized Commerce.<br><span class="text-green">Uncapped Scale.</span></h1>
+        <p class="subtitle">Earny is an invite-only performance network. We arm top-tier creators with high-converting assets, exclusive product access, and automated revenue tracking to scale modern brands.</p>
         <div class="hero-buttons">
-            <button class="btn">Apply to the network</button>
-            <button class="btn btn-outline">See how it works</button>
+            <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-green">Apply to Network</a>
+            <a href="#brands" class="btn btn-outline">Explore Brands</a>
         </div>
     </main>
 
-    <div class="partners-section reveal">
-        <p>Trusted by scaling dropshipping brands</p>
-        <div class="partner-logos">
-            <span class="brand-lgnd">LGND</span>
-            <span class="brand-lucen">LUCEN</span>
-            <span class="brand-goosedrop">goosedrop</span>
-            <span class="brand-aurora">AURORA</span>
-        </div>
-    </div>
-
     <section id="platform" class="reveal">
         <div class="section-header">
-            <h2 class="section-title">Launch with brands. Win using data.</h2>
-            <p class="section-desc">Earny combines exclusive product sourcing and data-led creative briefs into a single seamless workflow for creators.</p>
+            <h2 class="section-title">The Creator Arsenal</h2>
+            <p class="section-desc">We provide the exact framework, data, and assets needed to turn your content into a high-converting sales engine.</p>
         </div>
-
-        <div class="split-features">
-            <!-- White Card -->
-            <div class="feature-card white">
-                <h3>Partnerships Hub</h3>
-                <p class="sub-h3">Exclusive brand access and payouts</p>
-                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Partner with scaling brands and create video ads at scale. Build a storefront on Linktree and ensure your social traffic never goes unmonetized.</p>
-                
-                <ul class="check-list">
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Vetted Products</strong>
-                            <span>Access premium products at wholesale cost.</span>
-                        </div>
-                    </li>
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>40% Rev-Share</strong>
-                            <span>Industry-leading commissions on every net sale.</span>
-                        </div>
-                    </li>
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Unified Workflow</strong>
-                            <span>Track clicks and sales in one native dashboard.</span>
-                        </div>
-                    </li>
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Whitelisting</strong>
-                            <span>Get paid bonuses when we use your ads.</span>
-                        </div>
-                    </li>
-                </ul>
+        <div class="grid-3">
+            <div class="saas-card">
+                <h3>The Asset Drive</h3>
+                <p>Gain instant access to our curated Google Drive. We supply you with proven viral hooks, standard product B-roll, and caption templates optimized for current algorithms.</p>
             </div>
-
-            <!-- Lime Green Card -->
-            <div class="feature-card lime">
-                <h3>CreativeOps</h3>
-                <p class="sub-h3">The anti-guesswork data engine</p>
-                <p style="color: rgba(0,0,0,0.7); line-height: 1.6; margin-bottom: 2rem;">Access the first-ever creator marketing system for data-led growth. Turn our internal ad insights into proven briefs and scale what actually drives results.</p>
-                
-                <ul class="check-list">
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Proven Hooks</strong>
-                            <span>Get data-led 3-second scripts that stop the scroll.</span>
-                        </div>
-                    </li>
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Asset Library</strong>
-                            <span>Access high-quality B-roll to splice into your edits.</span>
-                        </div>
-                    </li>
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Trend Alerts</strong>
-                            <span>Weekly Discord updates on viral audio formats.</span>
-                        </div>
-                    </li>
-                    <li class="check-item">
-                        <div class="check-icon">✓</div>
-                        <div class="check-text">
-                            <strong>Creative Analytics</strong>
-                            <span>See performance data to iterate on your next video.</span>
-                        </div>
-                    </li>
-                </ul>
+            <div class="saas-card">
+                <h3>Creator Dashboard</h3>
+                <p>Powered by our native infrastructure, your private portal tracks link clicks, conversions, and payouts in real-time. Know exactly which videos are driving ROI.</p>
+            </div>
+            <div class="saas-card">
+                <h3>Private Network</h3>
+                <p>Join the Earny Discord. Connect with top performers, view weekly leaderboards, and get direct updates from our internal media buyers on what trends are converting.</p>
             </div>
         </div>
     </section>
 
+    <div class="bg-light">
+        <section id="calculator" class="reveal">
+            <div class="section-header">
+                <h2 class="section-title">Revenue Predictor</h2>
+                <p class="section-desc">Calculate your estimated monthly payouts based on our flat-rate commission structure (R130 - R250 per sale).</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calc-controls">
+                    <div class="calc-input-group">
+                        <label>Monthly Views Generated: <span id="views-val">100,000</span></label>
+                        <input type="range" id="views-slider" min="10000" max="2000000" step="10000" value="100000">
+                    </div>
+                    <div class="calc-input-group">
+                        <label>View-to-Sale Conversion: <span id="cvr-val">0.05%</span></label>
+                        <input type="range" id="cvr-slider" min="0.01" max="0.50" step="0.01" value="0.05">
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">*Estimates are based on historical network averages. Organic social conversion typically ranges from 0.01% to 0.1%.</p>
+                </div>
+                <div class="calc-result">
+                    <h4 style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1rem; font-weight: 500;">Estimated Monthly Earnings</h4>
+                    <div class="total" id="earnings-total">R6,500 - R12,500</div>
+                    <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-green" style="width: 100%;">Start Earning</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <section id="brands" class="reveal">
         <div class="section-header">
-            <h2 class="section-title">Creator monetization starts with proven products</h2>
-            <p class="section-desc">Don't waste time making videos for products that don't convert. Apply to run campaigns for our highest-converting partner brands.</p>
+            <h2 class="section-title">Active Programs</h2>
+            <p class="section-desc">Select a brand campaign below. Approved partners are encouraged to scale multiple campaigns simultaneously.</p>
         </div>
-
-        <div class="vertical-brands">
+        <div class="grid-3">
             <div class="v-card">
                 <div>
                     <span class="v-card-tag">Lifestyle & Apparel</span>
                     <h3 class="brand-lgnd">LGND</h3>
                     <p>High-converting comfort lifestyle apparel. Ideal for creators with a sleek, aesthetic, or high-energy content style.</p>
                 </div>
-                <button class="btn btn-outline" style="width: 100%;">View Campaign</button>
+                <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-outline" style="width: 100%;">View Campaign</a>
             </div>
             
-            <div class="v-card" style="border-color: #D1FF00; box-shadow: 0 10px 30px rgba(209, 255, 0, 0.15);">
+            <div class="v-card" style="border-color: var(--accent-primary); box-shadow: 0 10px 30px rgba(0, 128, 96, 0.1);">
                 <div>
                     <span class="v-card-tag">Tech & Utility</span>
                     <h3 class="brand-goosedrop">goosedrop</h3>
                     <p>High-utility, problem-solving items. Perfect for direct-response marketing and rapid demonstration hooks.</p>
                 </div>
-                <button class="btn btn-lime" style="width: 100%;">View Campaign</button>
+                <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-green" style="width: 100%;">View Campaign</a>
             </div>
             
             <div class="v-card">
@@ -392,91 +268,34 @@
                     <h3 class="brand-lucen">LUCEN</h3>
                     <p>Modern, refined products requiring crisp, well-lit, and detail-oriented UGC reviews and unboxings.</p>
                 </div>
-                <button class="btn btn-outline" style="width: 100%;">View Campaign</button>
+                <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-outline" style="width: 100%;">View Campaign</a>
             </div>
         </div>
     </section>
 
-    <section id="calculator" class="reveal">
-        <div class="calculator-wrapper">
-            <div class="calc-left">
-                <h3>Predict your payouts.</h3>
-                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.6;">Use real conversion data to estimate your monthly earnings. Earny operates on a flat 40% revenue share, generally yielding R130 to R250 per sale.</p>
-                <button class="btn" style="margin-top: 2rem;">Apply to Earny</button>
-            </div>
-            
-            <div class="calc-right">
-                <div class="calc-input-group">
-                    <label>Monthly Organic Views <span><span id="views-val">100,000</span></span></label>
-                    <input type="range" id="views-slider" min="10000" max="2000000" step="10000" value="100000">
-                </div>
-                <div class="calc-input-group">
-                    <label>View-to-Sale Conversion <span><span id="cvr-val">0.05%</span></span></label>
-                    <input type="range" id="cvr-slider" min="0.01" max="0.50" step="0.01" value="0.05">
-                </div>
-                
-                <div class="calc-result">
-                    <p>Estimated Monthly Earnings</p>
-                    <div class="total" id="earnings-total">R6,500 - R12,500</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="banner-cta reveal">
-        <h2>Want to see Earny in action? <br>Get a quick demo.</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Submit your portfolio. We'll review your content style and set up a call to get you onboarded to your first campaign.</p>
-        <button class="btn">Apply as a Creator</button>
-    </div>
-
-    <!-- UPDATED: Mega Footer -->
     <footer>
         <div class="footer-top">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>By business type</h4>
+                    <h4>Platform</h4>
                     <ul>
-                        <li><a href="#">For brands</a></li>
-                        <li><a href="#">For agencies</a></li>
-                    </ul>
-                    <h4 style="margin-top: 2rem;">By feature</h4>
-                    <ul>
-                        <li><a href="#">Partnerships hub</a></li>
-                        <li><a href="#">CreativeOps</a></li>
+                        <li><a href="#platform">How it works</a></li>
+                        <li><a href="#brands">Brand Partners</a></li>
+                        <li><a href="#calculator">Earnings Predictor</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="#">Creators</a></li>
-                        <li><a href="#">Help center</a></li>
-                        <li><a href="#">Success stories</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h4>Blog ↗</h4>
-                    <ul>
-                        <li><a href="#">Ad performance</a></li>
-                        <li><a href="#">Earny news</a></li>
-                        <li><a href="#">User-generated content</a></li>
-                        <li><a href="#">Digital marketing</a></li>
-                        <li><a href="#">eCommerce marketing</a></li>
-                        <li><a href="#">Social media marketing</a></li>
-                        <li><a href="#">Video marketing</a></li>
-                        <li><a href="#">Influencers</a></li>
-                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Creator Guidelines</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">UGC Best Practices</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-col">
                     <h4>Company</h4>
-                    <ul>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Careers</a></li>
-                    </ul>
-                    <h4 style="margin-top: 2rem;">Contact us</h4>
                     <ul>
                         <li><a href="#">Book a call</a></li>
                         <li><a href="#">hello@earny.co.za</a></li>
@@ -485,67 +304,39 @@
             </div>
             
             <div class="footer-brand">
-                <div class="footer-logo">earny</div>
-                <p>Turn creator marketing into your most profitable growth channel</p>
+                <div class="footer-logo">earny<span>.</span></div>
+                <p>Turn creator marketing into your most profitable growth channel.</p>
                 
                 <div class="experts-in">
                     <span>Experts in</span>
-                    <strong>Meta</strong> 
-                    <span style="margin: 0 4px;">&</span>
-                    <strong>TikTok</strong>
-                </div>
-                
-                <div class="app-links-section">
-                    <a href="#">Become a creator ↗</a>
-                    <div class="app-buttons">
-                        <button class="app-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                            App store
-                        </button>
-                        <button class="app-btn">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                            Play store
-                        </button>
-                    </div>
+                    <!-- Meta Official SVG -->
+                    <svg class="svg-icon" viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M117.8 71.9h23.2V28.1h-23.2v43.8zm111.4-1.2c16.3 0 29.5-12.7 29.5-28.7S245.5 13.3 229.2 13.3c-16.1 0-29.3 12.7-29.3 28.7s13.2 28.7 29.3 28.7zm0-18.7c-6.2 0-10.3-5-10.3-10s4.1-10 10.3-10 10.5 5 10.5 10-4.3 10-10.5 10zM57.6 71.9l20.4-32.9L98.5 71.9h25.4L88.6 17H67.5L48.2 46.5 28.8 17H7.7l35.3 54.9H57.6zm290.7.5c6.5 0 11.4-2.1 14.8-6V71.9h22v-43.8h-23v14.4c-3.1-3.6-7.8-5.6-13.8-5.6-13 0-24 10.6-24 24s11 23.8 24 23.8zm5.2-18.1c-5.7 0-9.8-4.7-9.8-9.8s4.1-9.8 9.8-9.8 9.9 4.6 9.9 9.8-4.2 9.8-9.9 9.8zm54.1-13.7h18.2v14.4c3.4-3.9 8.3-6 14.8-6 13 0 24 10.6 24 24S453.6 72 440.6 72c-6 0-10.7-2-13.8-5.6v5.5h-23v-54.3h23v13zm19.2 13.5c-5.7 0-9.8 4.7-9.8 9.8s4.1 9.8 9.8 9.8 9.9-4.6 9.9-9.8-4.2-9.8-9.9-9.8z"/>
+                    </svg>
+                    <!-- TikTok Official SVG -->
+                    <svg class="svg-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M448 209.9a210.1 210.1 0 0 1-122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
+                    </svg>
                 </div>
             </div>
         </div>
         
         <div class="footer-bottom">
-            <div class="social-icons">
-                <a href="#" class="social-icon">in</a>
-                <a href="#" class="social-icon">ig</a>
-                <a href="#" class="social-icon">tk</a>
-                <a href="#" class="social-icon">x</a>
-                <a href="#" class="social-icon">fb</a>
-                <a href="#" class="social-icon">yt</a>
-            </div>
-            
-            <div class="footer-legal">
-                <div class="legal-links">
-                    <a href="#">Terms of service</a>
-                    <a href="#">Privacy policy</a>
-                </div>
-                <p>140 West Street, Sandton, 2196, South Africa • © 2026 By Earny. All Rights Reserved.</p>
-            </div>
+            <p>140 West Street, Sandton, 2196, South Africa</p>
+            <p>&copy; 2026 Earny Media Network. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                setTimeout(() => { loader.style.display = 'none'; }, 500);
-            }, 800); 
-        });
-
+        // Nav Scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) { nav.classList.add('scrolled'); } 
             else { nav.classList.remove('scrolled'); }
         });
 
+        // Scroll Reveal
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -560,6 +351,7 @@
         window.addEventListener("scroll", reveal);
         reveal(); 
 
+        // ZAR Calculator Logic
         const viewsSlider = document.getElementById('views-slider');
         const cvrSlider = document.getElementById('cvr-slider');
         const viewsVal = document.getElementById('views-val');
