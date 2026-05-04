@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earny | Creator Performance Network</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            var-bg-base: #FFFFFF;
+            --bg-base: #FFFFFF;
+            --bg-surface: #F4F6F8; 
+            --bg-card: #FFFFFF;
+            --text-main: #202223; 
+            --text-muted: #6D7175; 
+            --accent-billo: #D1FF00;
+            --accent-billo-gradient: linear-gradient(135deg, #E2FF4D, #C2FF00);
+            --accent-dark: #000000;
+            --border-color: #E1E3E5; 
+            --radius-lg: 32px;
+            --radius-md: 20px;
+            --radius-btn: 50px;
+            --shadow-soft: 0 12px 34px rgba(0, 0, 0, 0.06);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-base); color: var(--text-main);
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; position: relative; line-height: 1.5;
+        }
+
+        /* --- Background Blobs --- */
+        .blob { position: absolute; background: var(--accent-billo); filter: blur(50px); opacity: 0.4; z-index: -1; pointer-events: none; }
+        .blob-1 { width: 300px; height: 150px; top: 5%; left: -5%; transform: rotate(-15deg); }
+        .blob-2 { width: 400px; height: 200px; top: 15%; right: -10%; border-radius: 100px; }
+
+        h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.03em; color: var(--text-main); }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 1.2rem 5%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid transparent;
+            transition: border 0.3s ease;
+        }
+        nav.scrolled { border-bottom: 1px solid var(--border-color); }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: -1.5px; text-decoration: none; color: var(--text-main); }
+        .logo span { color: var(--accent-billo); text-shadow: 1px 1px 0px #000; }
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--text-main); text-decoration: none; margin-left: 2.5rem; font-size: 0.95rem; font-weight: 500; transition: opacity 0.2s; }
+        .nav-links a:hover { opacity: 0.6; }
+        
+        /* Buttons */
+        .btn { 
+            display: inline-flex; align-items: center; justify-content: center; 
+            background: var(--accent-dark); color: #ffffff; padding: 1rem 2rem; 
+            font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: var(--radius-btn); 
+            transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; border: none; 
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .btn-lime { background: var(--accent-billo); color: var(--text-main); }
+        .btn-lime:hover { background: #BDE600; }
+        .btn-outline { background: transparent; color: var(--text-main); border: 2px solid var(--border-color); }
+
+        /* Mobile Nav Override */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Hides links on mobile so button fits */
+            nav { padding: 1rem 5%; }
+            .btn { padding: 0.8rem 1.5rem; font-size: 0.9rem; }
+        }
+
+        /* --- Hero --- */
+        .hero { text-align: center; padding: 10rem 1rem 5rem 1rem; max-width: 900px; margin: 0 auto; }
+        .hero-tag { display: inline-block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+        h1 { font-size: 4rem; margin-bottom: 1.5rem; line-height: 1.1; }
+        h1 .highlight { position: relative; display: inline-block; z-index: 1; }
+        h1 .highlight::after { content: ''; position: absolute; bottom: 10px; left: -5%; width: 110%; height: 40%; background: var(--accent-billo); z-index: -1; border-radius: 10px; transform: rotate(-2deg); }
+        .subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 650px; margin: 0 auto 2.5rem auto; }
+        @media (max-width: 768px) { h1 { font-size: 2.8rem; } }
+
+        /* --- Universal Sections --- */
+        section { padding: 5rem 5%; max-width: 1250px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; }
+        .section-desc { color: var(--text-muted); max-width: 600px; line-height: 1.6; font-size: 1.1rem; margin: 0 auto; }
+
+        /* --- Mega Footer --- */
+        footer { padding: 4rem 5% 2rem 5%; border-top: 1px solid var(--border-color); background: var(--bg-base); }
+        .footer-top { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: wrap; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; flex: 2; min-width: 300px; }
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } .footer-top { flex-direction: column; } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+        
+        .footer-col h4 { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 1rem; }
+        .footer-col a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 500; }
+        .footer-col a:hover { opacity: 0.6; }
+
+        .footer-brand { flex: 1; max-width: 350px; }
+        .footer-brand .footer-logo { font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; letter-spacing: -1.5px; }
+        .footer-brand .footer-logo span { color: var(--accent-billo); text-shadow: 1px 1px 0px #000; }
+        .footer-brand p { color: var(--text-main); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; font-weight: 500;}
+        
+        .experts-in { padding-top: 1.5rem; border-top: 1px solid var(--border-color); display: flex; align-items: center; gap: 0.8rem;}
+        .experts-in span { font-size: 0.85rem; color: var(--text-muted); }
+        .svg-icon { height: 20px; width: auto; fill: var(--text-main); } /* Meta/TikTok SVG Styling */
+
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">earny<span>.</span></a>
+        <div class="nav-links">
+            <a href="#platform">The Platform</a>
+            <a href="#brands">Our Brands</a>
+        </div>
+        <div class="nav-actions">
+            <!-- REPLACE THIS HREF WITH YOUR SHOPIFY COLLABS URL -->
+            <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-lime">Apply Now</a>
+        </div>
+    </nav>
+
+    <main class="hero reveal">
+        <span class="hero-tag">For UGC Creators</span>
+        <h1>Turn <span class="highlight">your content</span> into a predictable income stream</h1>
+        <p class="subtitle">Earny is a unified platform connecting performance creators with vetted e-commerce brands. Get products at cost, run campaigns, and keep 40% of the revenue.</p>
+        <div class="hero-buttons">
+            <a href="YOUR_SHOPIFY_COLLABS_LINK" class="btn btn-dark">Apply to the network</a>
+        </div>
+    </main>
+
+    <!-- Basic Content Section (Truncated for brevity, add your split cards and brands here from previous steps) -->
+    <section id="platform" class="reveal">
+        <div class="section-header">
+            <h2 class="section-title">Launch with brands. Win using data.</h2>
+            <p class="section-desc">Earny combines exclusive product sourcing and data-led creative briefs into a single seamless workflow for creators.</p>
+        </div>
+        <!-- Insert Feature Cards Here -->
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="#">How it works</a></li>
+                        <li><a href="#">Brand Partners</a></li>
+                        <li><a href="#">Creator Guidelines</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">UGC Best Practices</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">hello@earny.co.za</a></li>
+                        <li><a href="#">Apply to network</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-brand">
+                <div class="footer-logo">earny<span>.</span></div>
+                <p>Turn creator marketing into your most profitable growth channel.</p>
+                
+                <div class="experts-in">
+                    <span>Experts in</span>
+                    <!-- Meta Official SVG -->
+                    <svg class="svg-icon" viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M117.8 71.9h23.2V28.1h-23.2v43.8zm111.4-1.2c16.3 0 29.5-12.7 29.5-28.7S245.5 13.3 229.2 13.3c-16.1 0-29.3 12.7-29.3 28.7s13.2 28.7 29.3 28.7zm0-18.7c-6.2 0-10.3-5-10.3-10s4.1-10 10.3-10 10.5 5 10.5 10-4.3 10-10.5 10zM57.6 71.9l20.4-32.9L98.5 71.9h25.4L88.6 17H67.5L48.2 46.5 28.8 17H7.7l35.3 54.9H57.6zm290.7.5c6.5 0 11.4-2.1 14.8-6V71.9h22v-43.8h-23v14.4c-3.1-3.6-7.8-5.6-13.8-5.6-13 0-24 10.6-24 24s11 23.8 24 23.8zm5.2-18.1c-5.7 0-9.8-4.7-9.8-9.8s4.1-9.8 9.8-9.8 9.9 4.6 9.9 9.8-4.2 9.8-9.9 9.8zm54.1-13.7h18.2v14.4c3.4-3.9 8.3-6 14.8-6 13 0 24 10.6 24 24S453.6 72 440.6 72c-6 0-10.7-2-13.8-5.6v5.5h-23v-54.3h23v13zm19.2 13.5c-5.7 0-9.8 4.7-9.8 9.8s4.1 9.8 9.8 9.8 9.9-4.6 9.9-9.8-4.2-9.8-9.9-9.8z"/>
+                    </svg>
+                    <!-- TikTok Official SVG -->
+                    <svg class="svg-icon" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M448 209.9a210.1 210.1 0 0 1-122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+        });
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                if (reveals[i].getBoundingClientRect().top < window.innerHeight - 100) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal); reveal(); 
+    </script>
+</body>
+</html>
