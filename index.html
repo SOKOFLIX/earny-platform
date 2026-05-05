@@ -132,8 +132,10 @@
         .pillar-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-subtle); transition: transform 0.3s ease; display: flex; flex-direction: column; }
         .pillar-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .pillar-card.lime-accent { border-color: var(--accent-billo); background: linear-gradient(to bottom, #ffffff, #fdfef5); }
-        .pillar-icon { width: 60px; height: 60px; background: var(--bg-surface); border-radius: 16px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; margin-bottom: 2rem; }
+        
+        .pillar-icon { width: 60px; height: 60px; background: var(--bg-surface); color: var(--text-main); border-radius: 16px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; }
         .pillar-card.lime-accent .pillar-icon { background: var(--accent-billo); }
+        
         .pillar-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
         .pillar-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; font-size: 0.95rem; }
         .pillar-list { list-style: none; margin-top: auto; }
@@ -329,7 +331,7 @@
         </div>
     </div>
 
-    <!-- NEW: The 3 Pillars Section -->
+    <!-- NEW: The 3 Pillars Section (With SVG Icons) -->
     <div class="bg-light">
         <section id="services" class="reveal">
             <div class="section-header">
@@ -340,7 +342,13 @@
             <div class="pillar-grid">
                 <!-- Pillar 1 -->
                 <div class="pillar-card">
-                    <div class="pillar-icon">📊</div>
+                    <div class="pillar-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </div>
                     <h3>1. Performance Network</h3>
                     <p>Start monetizing immediately. Join our private network to run performance marketing for our internal brands. Create UGC, post links, and take home massive rev-shares.</p>
                     <ul class="pillar-list">
@@ -352,7 +360,12 @@
 
                 <!-- Pillar 2 -->
                 <div class="pillar-card lime-accent">
-                    <div class="pillar-icon">🤝</div>
+                    <div class="pillar-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
                     <h3>2. Talent Management</h3>
                     <p>Once you prove your ability to convert, we step in as your official talent managers. We pitch you to global companies, negotiate your worth, and handle the legal contracts.</p>
                     <ul class="pillar-list">
@@ -364,7 +377,14 @@
 
                 <!-- Pillar 3 -->
                 <div class="pillar-card">
-                    <div class="pillar-icon">🚀</div>
+                    <div class="pillar-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                        </svg>
+                    </div>
                     <h3>3. Brand Incubator</h3>
                     <p>Stop selling other people's products. For our absolute top-tier creators, we leverage our e-commerce infrastructure to build, launch, and manage your very own product brand.</p>
                     <ul class="pillar-list">
