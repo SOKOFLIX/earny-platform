@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Earny | Full-Stack Creator Management</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,6 @@
             --text-muted: #6D7175; 
             
             --accent-primary: #008060; 
-            --accent-hover: #006e52;
             --accent-dark: #000000;
             
             --border-color: #E1E3E5; 
@@ -36,10 +35,15 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        body {
-            background-color: var(--bg-base); color: var(--text-main);
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-base); 
+            color: var(--text-main);
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-            overflow-x: hidden; position: relative; line-height: 1.5;
+            position: relative; 
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* --- Loading Screen --- */
@@ -83,14 +87,29 @@
         .nav-links a:hover { opacity: 0.6; }
         .nav-actions { display: flex; align-items: center; margin-left: 3rem; }
         .login-link { font-weight: 500; margin-right: 1.5rem; text-decoration: none; color: var(--text-main); }
-        @media (max-width: 900px) { .nav-links { display: none; } }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn svg { width: 28px; height: 28px; stroke: var(--text-main); stroke-width: 2; stroke-linecap: round; }
+        .mobile-nav { 
+            position: absolute; top: 100%; left: 0; width: 100%; background: var(--bg-base); padding: 1.5rem 5%; 
+            border-bottom: 1px solid var(--border-color); box-shadow: var(--shadow-soft);
+            display: flex; flex-direction: column; gap: 1.5rem; transform: translateY(-150%); transition: transform 0.3s ease; z-index: 999;
+        }
+        .mobile-nav.open { transform: translateY(0); }
+        .mobile-nav a { text-decoration: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; }
+
+        @media (max-width: 900px) {
+            .nav-links, .nav-actions { display: none; }
+            .mobile-menu-btn { display: block; }
+        }
 
         /* --- Buttons --- */
         .btn { 
             display: inline-flex; align-items: center; justify-content: center; 
             background: var(--accent-dark); color: #ffffff; padding: 1rem 2rem; 
             font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: var(--radius-btn); 
-            transition: all 0.2s ease; cursor: pointer; border: none; 
+            transition: all 0.2s ease; cursor: pointer; border: none; text-align: center;
         }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .btn-lime { background: var(--accent-billo); color: var(--text-main); }
@@ -106,12 +125,10 @@
         h1 .highlight::after { content: ''; position: absolute; bottom: 10px; left: -5%; width: 110%; height: 40%; background: var(--accent-billo); z-index: -1; border-radius: 10px; transform: rotate(-2deg); }
         .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
-        @media (max-width: 768px) { h1 { font-size: 3rem; } .hero-buttons { flex-direction: column; padding: 0 2rem; } }
 
         /* --- Logos / Partners --- */
         .partners-section { text-align: center; padding: 2rem 5% 5rem 5%; }
         .partners-section p { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 1px;}
-        
         .partner-logos { display: flex; justify-content: center; gap: 4.5rem; flex-wrap: wrap; align-items: center; opacity: 0.85; }
         .brand-lgnd { font-weight: 900; font-size: 2rem; font-style: italic; letter-spacing: -2px; color: #111111; margin: 0; }
         .brand-lucen { font-weight: 300; font-size: 1.4rem; letter-spacing: 6px; color: #555555; text-transform: uppercase; margin: 0; }
@@ -124,19 +141,16 @@
         .section-header { text-align: center; margin-bottom: 4rem; }
         .section-title { font-size: 3rem; margin-bottom: 1rem; }
         .section-desc { color: var(--text-muted); max-width: 600px; line-height: 1.6; font-size: 1.1rem; margin: 0 auto; }
-        @media (max-width: 768px) { .section-title { font-size: 2.2rem; } }
 
-        /* --- NEW: The 3 Pillars --- */
+        /* --- The 3 Pillars --- */
         .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; }
         @media (max-width: 900px) { .pillar-grid { grid-template-columns: 1fr; } }
         .pillar-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-subtle); transition: transform 0.3s ease; display: flex; flex-direction: column; }
         .pillar-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .pillar-card.lime-accent { border-color: var(--accent-billo); background: linear-gradient(to bottom, #ffffff, #fdfef5); }
-        
         .pillar-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
         .pillar-icon { width: 60px; height: 60px; background: var(--bg-surface); color: var(--text-main); border-radius: 16px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
         .pillar-card.lime-accent .pillar-icon { background: var(--accent-billo); }
-        
         .pillar-card h3 { font-size: 1.4rem; margin-bottom: 0; }
         .pillar-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; font-size: 0.95rem; }
         .pillar-list { list-style: none; margin-top: auto; }
@@ -146,16 +160,13 @@
         /* --- Split Feature Cards --- */
         .split-features { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
         @media (max-width: 900px) { .split-features { grid-template-columns: 1fr; } }
-        
         .feature-card { border-radius: var(--radius-lg); padding: 4rem 3rem; display: flex; flex-direction: column; transition: transform 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); }
         .feature-card.white { background: var(--bg-card); box-shadow: var(--shadow-soft); border: 1px solid var(--border-color); }
         .feature-card.lime { background: var(--accent-billo-gradient); border: none; }
-        
         .feature-card h3 { font-size: 2rem; margin-bottom: 0.5rem; }
         .feature-card .sub-h3 { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2.5rem; }
         .feature-card.lime .sub-h3 { color: rgba(0,0,0,0.6); }
-
         .check-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: auto; }
         @media (max-width: 600px) { .check-list { grid-template-columns: 1fr; } }
         .check-item { display: flex; align-items: flex-start; gap: 12px; }
@@ -168,7 +179,6 @@
         /* --- How It Works (Steps) --- */
         .step-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; position: relative; }
         @media (max-width: 900px) { .step-grid { grid-template-columns: 1fr; } }
-        
         .step-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 3rem 2rem; text-align: center; position: relative; z-index: 2; box-shadow: var(--shadow-subtle); transition: all 0.3s ease;}
         .step-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--accent-billo); }
         .step-num { width: 50px; height: 50px; background: var(--accent-billo); color: var(--text-main); font-size: 1.5rem; font-weight: 800; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto; box-shadow: 0 4px 15px rgba(209, 255, 0, 0.4); }
@@ -179,36 +189,30 @@
         .vertical-brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
         @media (max-width: 900px) { .vertical-brands { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .vertical-brands { grid-template-columns: 1fr; } }
-
         .v-card {
             background: var(--bg-surface); border-radius: var(--radius-lg); padding: 2.5rem 2rem;
             text-align: center; border: 1px solid var(--border-color);
             position: relative; overflow: hidden; height: 450px; display: flex; flex-direction: column; justify-content: space-between;
         }
         .v-card-tag { display: inline-block; background: #FFFFFF; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
-        
         .v-card .brand-lgnd { font-size: 2.8rem; font-weight: 900; font-style: italic; margin-bottom: 0.5rem; z-index: 2; position: relative; }
         .v-card .brand-lucen { font-size: 1.8rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 0.5rem; z-index: 2; position: relative; }
         .v-card .brand-goosedrop { font-size: 2.4rem; justify-content: center; margin-bottom: 0.5rem; z-index: 2; position: relative; }
-        
-        .v-card p { color: var(--text-muted); font-size: 0.95rem; z-index: 2; position: relative;}
+        .v-card p { color: var(--text-muted); font-size: 0.95rem; z-index: 2; position: relative; margin-bottom: 2rem;}
         .v-card .btn { width: 100%; margin-top: auto; z-index: 2; position: relative; }
         .v-card::before { content: ''; position: absolute; bottom: -20%; right: -20%; width: 200px; height: 200px; background: rgba(209, 255, 0, 0.2); border-radius: 50%; filter: blur(30px); }
 
         /* --- Calculator --- */
         .calculator-wrapper { background: var(--bg-surface); border-radius: var(--radius-lg); padding: 5rem; display: flex; gap: 4rem; align-items: center; border: 1px solid var(--border-color); }
-        @media (max-width: 900px) { .calculator-wrapper { flex-direction: column; padding: 2rem; } }
-        
+        @media (max-width: 900px) { .calculator-wrapper { flex-direction: column; padding: 2rem; gap: 2rem; } }
         .calc-left { flex: 1; }
         .calc-left h3 { font-size: 2.5rem; margin-bottom: 1rem; }
-        
         .calc-right { flex: 1; background: #FFFFFF; padding: 3rem; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); width: 100%; }
         .calc-input-group { margin-bottom: 2rem; }
         .calc-input-group label { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 1rem; color: var(--text-main); }
         input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; }
         input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; background: var(--bg-surface); border-radius: 4px; }
         input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; height: 24px; width: 24px; border-radius: 50%; background: var(--text-main); margin-top: -8px; cursor: pointer; border: 4px solid var(--accent-billo); }
-        
         .calc-result { border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; }
         .calc-result p { color: var(--text-muted); font-weight: 500; margin-bottom: 0.5rem; }
         .calc-result .total { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; }
@@ -241,12 +245,12 @@
         .banner-cta::before { content: ''; position: absolute; left: 0; top: 0; width: 150px; height: 100%; background: var(--accent-billo); opacity: 0.2; filter: blur(40px); border-radius: 50%; }
         .banner-cta::after { content: ''; position: absolute; right: 0; top: 0; width: 150px; height: 100%; background: var(--accent-billo); opacity: 0.2; filter: blur(40px); border-radius: 50%; }
 
-        /* --- Mega Footer (Billo App Style) --- */
+        /* --- Mega Footer --- */
         footer { padding: 5rem 5% 2rem 5%; border-top: 1px solid var(--border-color); background: var(--bg-base); }
         .footer-top { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: wrap; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; flex: 2; min-width: 600px; }
         @media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(2, 1fr); min-width: 100%; } .footer-top { flex-direction: column; } }
-        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; min-width: 100%; } }
         
         .footer-col h4 { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-bottom: 1.5rem; letter-spacing: 0; }
         .footer-col ul { list-style: none; }
@@ -264,7 +268,7 @@
         
         .app-links-section { margin-top: 2rem; }
         .app-links-section > a { font-size: 0.85rem; color: var(--text-muted); text-decoration: none; margin-bottom: 1rem; display: inline-block; font-weight: 500;}
-        .app-buttons { display: flex; gap: 1rem; }
+        .app-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
         .app-btn { background: transparent; border: 1px solid var(--border-color); border-radius: 20px; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; color: var(--text-main); }
         .app-btn:hover { background: var(--bg-surface); }
 
@@ -274,11 +278,55 @@
         .social-icon:hover { background: #e0e0e0; }
         
         .footer-legal { text-align: right; }
-        .legal-links { margin-bottom: 0.5rem; display: flex; justify-content: flex-end; gap: 1.5rem; }
+        .legal-links { margin-bottom: 0.5rem; display: flex; justify-content: flex-end; gap: 1.5rem; flex-wrap: wrap; }
         .legal-links a { color: var(--text-main); text-decoration: none; font-size: 0.85rem; font-weight: 600; }
         .legal-links a:hover { opacity: 0.6; }
         .footer-legal p { color: var(--text-muted); font-size: 0.8rem; }
-        @media (max-width: 768px) { .footer-bottom { flex-direction: column; align-items: center; text-align: center; } .footer-legal { text-align: center; } .legal-links { justify-content: center; } }
+        
+        /* =======================================================
+           MOBILE OPTIMIZATION CORE RULES (MAX-WIDTH: 768px)
+           ======================================================= */
+        @media (max-width: 768px) {
+            /* Adjust global section padding */
+            section { padding: 4rem 5%; }
+            
+            /* Scale Hero for smaller screens */
+            .hero { padding: 8rem 1rem 4rem 1rem; }
+            h1 { font-size: 2.5rem !important; }
+            .subtitle { font-size: 1.1rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons .btn { width: 100%; }
+            
+            /* Squeeze internal card padding to save lateral space */
+            .pillar-card { padding: 2rem 1.5rem; }
+            .feature-card { padding: 2.5rem 1.5rem; }
+            .step-card { padding: 2.5rem 1.5rem; }
+            .t-card { padding: 2rem 1.5rem; }
+            
+            /* Dynamic vertical brand cards */
+            .v-card { padding: 2.5rem 1.5rem; height: auto; min-height: 400px; }
+            
+            /* Calculator scaling */
+            .calculator-wrapper { padding: 2rem 1.5rem; }
+            .calc-right { padding: 2rem 1.5rem; }
+            .calc-left h3 { font-size: 2rem; }
+            .calc-result .total { font-size: 2.5rem; }
+            
+            /* Banner CTA */
+            .banner-cta { padding: 3rem 1.5rem; margin: 4rem auto; }
+            .banner-cta h2 { font-size: 2rem; }
+            
+            /* Footer alignments */
+            .footer-bottom { flex-direction: column; align-items: center; text-align: center; } 
+            .footer-legal { text-align: center; } 
+            .legal-links { justify-content: center; }
+            
+            /* Hide giant blobs on mobile to prevent overflow bugs */
+            .blob { display: none; }
+            
+            /* Fix section headers */
+            .section-title { font-size: 2rem; }
+        }
 
         /* --- Reveal Animation --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -287,7 +335,7 @@
 </head>
 <body>
 
-    <!-- Background Blobs -->
+    <!-- Background Blobs (Hidden on Mobile) -->
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
@@ -296,9 +344,11 @@
         <div class="loader-logo">earny<span>.</span></div>
     </div>
 
-    <!-- Navigation Updated -->
+    <!-- Navigation -->
     <nav id="navbar">
         <a href="#" class="logo">earny<span>.</span></a>
+        
+        <!-- Desktop Links -->
         <div class="nav-links">
             <a href="#services">The Agency</a>
             <a href="#how-it-works">How it Works</a>
@@ -309,9 +359,25 @@
             <a href="#" class="login-link">Creator Login</a>
             <button class="btn">Apply to Roster</button>
         </div>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Menu">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12H21M3 6H21M3 18H21"/>
+            </svg>
+        </button>
+
+        <!-- Mobile Dropdown Links -->
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#services" class="mobile-link">The Agency</a>
+            <a href="#how-it-works" class="mobile-link">How it Works</a>
+            <a href="#brands" class="mobile-link">Portfolio</a>
+            <a href="#calculator" class="mobile-link">Earnings</a>
+            <button class="btn" style="width: 100%;">Apply to Roster</button>
+        </div>
     </nav>
 
-    <!-- NEW HERO: Management Agency Positioning -->
+    <!-- HERO -->
     <main class="hero reveal">
         <span class="hero-tag">Creator Management & Scaling Agency</span>
         <h1>Scale your influence. <br><span class="highlight">Own your audience.</span></h1>
@@ -332,7 +398,7 @@
         </div>
     </div>
 
-    <!-- NEW: The 3 Pillars Section (With Flex Header & No Numbers) -->
+    <!-- The 3 Pillars Section -->
     <div class="bg-light">
         <section id="services" class="reveal">
             <div class="section-header">
@@ -404,7 +470,7 @@
         </section>
     </div>
 
-    <!-- RETAINED: The Platform Tools -->
+    <!-- The Platform Tools -->
     <section id="platform" class="reveal">
         <div class="section-header">
             <h2 class="section-title">The Tech behind Phase 1</h2>
@@ -490,7 +556,7 @@
         </div>
     </section>
 
-    <!-- RETAINED: How it Works Section -->
+    <!-- How it Works Section -->
     <div class="bg-light">
         <section id="how-it-works" class="reveal">
             <div class="section-header">
@@ -517,7 +583,7 @@
         </section>
     </div>
 
-    <!-- UPDATED: Portfolio Brands -->
+    <!-- Portfolio Brands -->
     <section id="brands" class="reveal">
         <div class="section-header">
             <h2 class="section-title">Our Internal Portfolio</h2>
@@ -554,7 +620,7 @@
         </div>
     </section>
 
-    <!-- UPDATED: Testimonials / Social Proof (No Avatars, Added Handles) -->
+    <!-- Testimonials / Social Proof -->
     <div class="bg-light">
         <section id="testimonials" class="reveal">
             <div class="section-header">
@@ -602,7 +668,7 @@
         </section>
     </div>
 
-    <!-- RETAINED: Calculator -->
+    <!-- Calculator -->
     <section id="calculator" class="reveal">
         <div class="calculator-wrapper">
             <div class="calc-left">
@@ -629,7 +695,7 @@
         </div>
     </section>
 
-    <!-- RETAINED: FAQ Section -->
+    <!-- FAQ Section -->
     <section id="faq" class="reveal">
         <div class="section-header">
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -654,14 +720,14 @@
         </div>
     </section>
 
-    <!-- RETAINED: Banner CTA -->
+    <!-- Banner CTA -->
     <div class="banner-cta reveal">
         <h2>Want to see Earny in action? <br>Get a quick demo.</h2>
         <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Submit your portfolio. We'll review your content style and set up a call to discuss your growth pipeline.</p>
         <button class="btn">Apply as a Creator</button>
     </div>
 
-    <!-- RETAINED: Mega Footer -->
+    <!-- Mega Footer -->
     <footer>
         <div class="footer-top">
             <div class="footer-grid">
@@ -764,6 +830,21 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobileMenuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
+
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('loader');
