@@ -133,10 +133,11 @@
         .pillar-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
         .pillar-card.lime-accent { border-color: var(--accent-billo); background: linear-gradient(to bottom, #ffffff, #fdfef5); }
         
-        .pillar-icon { width: 60px; height: 60px; background: var(--bg-surface); color: var(--text-main); border-radius: 16px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; }
+        .pillar-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .pillar-icon { width: 60px; height: 60px; background: var(--bg-surface); color: var(--text-main); border-radius: 16px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
         .pillar-card.lime-accent .pillar-icon { background: var(--accent-billo); }
         
-        .pillar-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .pillar-card h3 { font-size: 1.4rem; margin-bottom: 0; }
         .pillar-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; font-size: 0.95rem; }
         .pillar-list { list-style: none; margin-top: auto; }
         .pillar-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; }
@@ -218,8 +219,8 @@
         .t-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 2.5rem; box-shadow: var(--shadow-subtle); }
         .t-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
         .t-profile { display: flex; align-items: center; gap: 1rem; }
-        .t-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--bg-surface); display: flex; justify-content: center; align-items: center; font-weight: 700; color: var(--accent-primary); border: 2px solid var(--accent-billo); }
-        .t-info h4 { font-size: 1rem; margin-bottom: 0.1rem; }
+        .t-info h4 { font-size: 1.05rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 6px; }
+        .t-handle { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
         .t-info span { font-size: 0.85rem; color: var(--text-muted); }
         .t-tag { background: rgba(209, 255, 0, 0.2); color: var(--accent-dark); font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
         .t-card p { font-size: 1rem; color: var(--text-main); line-height: 1.6; font-style: italic; }
@@ -331,7 +332,7 @@
         </div>
     </div>
 
-    <!-- NEW: The 3 Pillars Section (With SVG Icons) -->
+    <!-- NEW: The 3 Pillars Section (With Flex Header & No Numbers) -->
     <div class="bg-light">
         <section id="services" class="reveal">
             <div class="section-header">
@@ -342,14 +343,16 @@
             <div class="pillar-grid">
                 <!-- Pillar 1 -->
                 <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="20" x2="18" y2="10"></line>
-                            <line x1="12" y1="20" x2="12" y2="4"></line>
-                            <line x1="6" y1="20" x2="6" y2="14"></line>
-                        </svg>
+                    <div class="pillar-header">
+                        <div class="pillar-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                        </div>
+                        <h3>Performance Network</h3>
                     </div>
-                    <h3>1. Performance Network</h3>
                     <p>Start monetizing immediately. Join our private network to run performance marketing for our internal brands. Create UGC, post links, and take home massive rev-shares.</p>
                     <ul class="pillar-list">
                         <li>Access vetted internal campaigns</li>
@@ -360,13 +363,15 @@
 
                 <!-- Pillar 2 -->
                 <div class="pillar-card lime-accent">
-                    <div class="pillar-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                        </svg>
+                    <div class="pillar-header">
+                        <div class="pillar-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <h3>Talent Management</h3>
                     </div>
-                    <h3>2. Talent Management</h3>
                     <p>Once you prove your ability to convert, we step in as your official talent managers. We pitch you to global companies, negotiate your worth, and handle the legal contracts.</p>
                     <ul class="pillar-list">
                         <li>Fixed-fee sponsorship negotiation</li>
@@ -377,15 +382,17 @@
 
                 <!-- Pillar 3 -->
                 <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
-                            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
-                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
-                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
-                        </svg>
+                    <div class="pillar-header">
+                        <div class="pillar-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                            </svg>
+                        </div>
+                        <h3>Brand Incubator</h3>
                     </div>
-                    <h3>3. Brand Incubator</h3>
                     <p>Stop selling other people's products. For our absolute top-tier creators, we leverage our e-commerce infrastructure to build, launch, and manage your very own product brand.</p>
                     <ul class="pillar-list">
                         <li>Product sourcing & manufacturing</li>
@@ -397,7 +404,7 @@
         </section>
     </div>
 
-    <!-- RETAINED: The Platform Tools (Repositioned to support Pillar 1) -->
+    <!-- RETAINED: The Platform Tools -->
     <section id="platform" class="reveal">
         <div class="section-header">
             <h2 class="section-title">The Tech behind Phase 1</h2>
@@ -510,7 +517,7 @@
         </section>
     </div>
 
-    <!-- UPDATED: Portfolio Brands (Accurate Descriptions) -->
+    <!-- UPDATED: Portfolio Brands -->
     <section id="brands" class="reveal">
         <div class="section-header">
             <h2 class="section-title">Our Internal Portfolio</h2>
@@ -547,7 +554,7 @@
         </div>
     </section>
 
-    <!-- RETAINED: Testimonials / Social Proof -->
+    <!-- UPDATED: Testimonials / Social Proof (No Avatars, Added Handles) -->
     <div class="bg-light">
         <section id="testimonials" class="reveal">
             <div class="section-header">
@@ -558,9 +565,8 @@
                 <div class="t-card">
                     <div class="t-header">
                         <div class="t-profile">
-                            <div class="t-avatar">C</div>
                             <div class="t-info">
-                                <h4>Chloe M.</h4>
+                                <h4>Chloe M. <span class="t-handle">@chloeM</span></h4>
                                 <span>Organic UGC Creator</span>
                             </div>
                         </div>
@@ -571,9 +577,8 @@
                 <div class="t-card">
                     <div class="t-header">
                         <div class="t-profile">
-                            <div class="t-avatar" style="color: #FF5A5F; border-color: #E1E3E5;">T</div>
                             <div class="t-info">
-                                <h4>Tyler S.</h4>
+                                <h4>Tyler S. <span class="t-handle">@tylerS</span></h4>
                                 <span>TikTok Media Buyer</span>
                             </div>
                         </div>
@@ -584,9 +589,8 @@
                 <div class="t-card">
                     <div class="t-header">
                         <div class="t-profile">
-                            <div class="t-avatar" style="color: #555; border-color: #E1E3E5;">M</div>
                             <div class="t-info">
-                                <h4>Mia L.</h4>
+                                <h4>Mia L. <span class="t-handle">@miaL</span></h4>
                                 <span>Lifestyle Influencer</span>
                             </div>
                         </div>
