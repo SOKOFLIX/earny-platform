@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Earny | Creator Performance Network</title>
+    <title>Earny | Full-Stack Creator Management</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -99,12 +99,12 @@
         .btn-outline:hover { border-color: var(--text-main); box-shadow: none; transform: none;}
 
         /* --- Hero --- */
-        .hero { text-align: center; padding: 12rem 1rem 6rem 1rem; max-width: 900px; margin: 0 auto; position: relative; }
-        .hero-tag { display: inline-block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
+        .hero { text-align: center; padding: 12rem 1rem 6rem 1rem; max-width: 950px; margin: 0 auto; position: relative; }
+        .hero-tag { display: inline-block; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; background: var(--bg-surface); padding: 8px 16px; border-radius: 20px; border: 1px solid var(--border-color); }
         h1 { font-size: 4.5rem; margin-bottom: 1.5rem; line-height: 1.1; }
         h1 .highlight { position: relative; display: inline-block; z-index: 1; }
         h1 .highlight::after { content: ''; position: absolute; bottom: 10px; left: -5%; width: 110%; height: 40%; background: var(--accent-billo); z-index: -1; border-radius: 10px; transform: rotate(-2deg); }
-        .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .subtitle { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.6; max-width: 700px; margin-left: auto; margin-right: auto; }
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
         @media (max-width: 768px) { h1 { font-size: 3rem; } .hero-buttons { flex-direction: column; padding: 0 2rem; } }
 
@@ -125,6 +125,20 @@
         .section-title { font-size: 3rem; margin-bottom: 1rem; }
         .section-desc { color: var(--text-muted); max-width: 600px; line-height: 1.6; font-size: 1.1rem; margin: 0 auto; }
         @media (max-width: 768px) { .section-title { font-size: 2.2rem; } }
+
+        /* --- NEW: The 3 Pillars --- */
+        .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; }
+        @media (max-width: 900px) { .pillar-grid { grid-template-columns: 1fr; } }
+        .pillar-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 3rem 2.5rem; border: 1px solid var(--border-color); box-shadow: var(--shadow-subtle); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+        .pillar-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .pillar-card.lime-accent { border-color: var(--accent-billo); background: linear-gradient(to bottom, #ffffff, #fdfef5); }
+        .pillar-icon { width: 60px; height: 60px; background: var(--bg-surface); border-radius: 16px; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; margin-bottom: 2rem; }
+        .pillar-card.lime-accent .pillar-icon { background: var(--accent-billo); }
+        .pillar-card h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        .pillar-card p { color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; font-size: 0.95rem; }
+        .pillar-list { list-style: none; margin-top: auto; }
+        .pillar-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; }
+        .pillar-list li::before { content: '→'; color: var(--accent-billo); font-weight: bold; font-size: 1.2rem; line-height: 1; }
 
         /* --- Split Feature Cards --- */
         .split-features { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 4rem; }
@@ -170,8 +184,8 @@
         }
         .v-card-tag { display: inline-block; background: #FFFFFF; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 1.5rem; }
         
-        .v-card .brand-lgnd { font-size: 2.8rem; margin-bottom: 0.5rem; z-index: 2; position: relative; }
-        .v-card .brand-lucen { font-size: 1.8rem; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+        .v-card .brand-lgnd { font-size: 2.8rem; font-weight: 900; font-style: italic; margin-bottom: 0.5rem; z-index: 2; position: relative; }
+        .v-card .brand-lucen { font-size: 1.8rem; font-weight: 300; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 0.5rem; z-index: 2; position: relative; }
         .v-card .brand-goosedrop { font-size: 2.4rem; justify-content: center; margin-bottom: 0.5rem; z-index: 2; position: relative; }
         
         .v-card p { color: var(--text-muted); font-size: 0.95rem; z-index: 2; position: relative;}
@@ -279,27 +293,29 @@
         <div class="loader-logo">earny<span>.</span></div>
     </div>
 
+    <!-- Navigation Updated -->
     <nav id="navbar">
         <a href="#" class="logo">earny<span>.</span></a>
         <div class="nav-links">
-            <a href="#platform">The Platform</a>
+            <a href="#services">The Agency</a>
             <a href="#how-it-works">How it Works</a>
-            <a href="#brands">Programs</a>
+            <a href="#brands">Portfolio</a>
             <a href="#calculator">Earnings</a>
         </div>
         <div class="nav-actions">
-            <a href="#" class="login-link">Login</a>
-            <button class="btn">Sign up for free</button>
+            <a href="#" class="login-link">Creator Login</a>
+            <button class="btn">Apply to Roster</button>
         </div>
     </nav>
 
+    <!-- NEW HERO: Management Agency Positioning -->
     <main class="hero reveal">
-        <span class="hero-tag">For UGC Creators & Media Buyers</span>
-        <h1>Turn <span class="highlight">your content</span> into a predictable income stream</h1>
-        <p class="subtitle">Earny is a unified platform connecting performance creators with vetted e-commerce brands. Get products at cost, run organic or paid campaigns, and keep 40% of the revenue.</p>
+        <span class="hero-tag">Creator Management & Scaling Agency</span>
+        <h1>Scale your influence. <br><span class="highlight">Own your audience.</span></h1>
+        <p class="subtitle">Earny is a full-stack creator management agency. We negotiate premium brand deals, provide high-converting UGC campaigns, and help top creators build and scale their own multi-million Rand e-commerce brands.</p>
         <div class="hero-buttons">
-            <button class="btn">Apply to the network</button>
-            <button class="btn btn-outline">See how it works</button>
+            <button class="btn">Apply for Representation</button>
+            <a href="#services" class="btn btn-outline">View our pillars</a>
         </div>
     </main>
 
@@ -313,10 +329,59 @@
         </div>
     </div>
 
+    <!-- NEW: The 3 Pillars Section -->
+    <div class="bg-light">
+        <section id="services" class="reveal">
+            <div class="section-header">
+                <h2 class="section-title">The Ascension Pipeline</h2>
+                <p class="section-desc">We don't just connect you to brands; we build your business. Our creators move through three distinct phases of monetization and ownership.</p>
+            </div>
+
+            <div class="pillar-grid">
+                <!-- Pillar 1 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">📊</div>
+                    <h3>1. Performance Network</h3>
+                    <p>Start monetizing immediately. Join our private network to run performance marketing for our internal brands. Create UGC, post links, and take home massive rev-shares.</p>
+                    <ul class="pillar-list">
+                        <li>Access vetted internal campaigns</li>
+                        <li>40% net revenue share</li>
+                        <li>Data-driven CreativeOps briefs</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card lime-accent">
+                    <div class="pillar-icon">🤝</div>
+                    <h3>2. Talent Management</h3>
+                    <p>Once you prove your ability to convert, we step in as your official talent managers. We pitch you to global companies, negotiate your worth, and handle the legal contracts.</p>
+                    <ul class="pillar-list">
+                        <li>Fixed-fee sponsorship negotiation</li>
+                        <li>Contract review & legal protection</li>
+                        <li>Invoicing & payment collection</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card">
+                    <div class="pillar-icon">🚀</div>
+                    <h3>3. Brand Incubator</h3>
+                    <p>Stop selling other people's products. For our absolute top-tier creators, we leverage our e-commerce infrastructure to build, launch, and manage your very own product brand.</p>
+                    <ul class="pillar-list">
+                        <li>Product sourcing & manufacturing</li>
+                        <li>Shopify store development</li>
+                        <li>Logistics and order fulfillment</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- RETAINED: The Platform Tools (Repositioned to support Pillar 1) -->
     <section id="platform" class="reveal">
         <div class="section-header">
-            <h2 class="section-title">Launch with brands. Win using data.</h2>
-            <p class="section-desc">Earny combines exclusive product sourcing and data-led creative briefs into a single seamless workflow for creators.</p>
+            <h2 class="section-title">The Tech behind Phase 1</h2>
+            <p class="section-desc">Earny combines exclusive product sourcing and data-led creative briefs into a single seamless workflow for network creators.</p>
         </div>
 
         <div class="split-features">
@@ -398,7 +463,7 @@
         </div>
     </section>
 
-    <!-- NEW: How it Works Section -->
+    <!-- RETAINED: How it Works Section -->
     <div class="bg-light">
         <section id="how-it-works" class="reveal">
             <div class="section-header">
@@ -425,18 +490,19 @@
         </section>
     </div>
 
+    <!-- UPDATED: Portfolio Brands (Accurate Descriptions) -->
     <section id="brands" class="reveal">
         <div class="section-header">
-            <h2 class="section-title">Creator monetization starts with proven products</h2>
-            <p class="section-desc">Don't waste time making videos for products that don't convert. Apply to run campaigns for our highest-converting partner brands.</p>
+            <h2 class="section-title">Our Internal Portfolio</h2>
+            <p class="section-desc">Network creators get exclusive access to run campaigns for our high-converting, internally managed e-commerce brands.</p>
         </div>
 
         <div class="vertical-brands">
             <div class="v-card">
                 <div>
-                    <span class="v-card-tag">Lifestyle & Apparel</span>
+                    <span class="v-card-tag">Apparel</span>
                     <h3 class="brand-lgnd">LGND</h3>
-                    <p>High-converting comfort lifestyle apparel. Ideal for creators with a sleek, aesthetic, or high-energy content style.</p>
+                    <p>A premium comfort clothing brand. Ideal for creators with a sleek, aesthetic, or high-energy lifestyle content style.</p>
                 </div>
                 <button class="btn btn-outline" style="width: 100%;">View Campaign</button>
             </div>
@@ -452,16 +518,16 @@
             
             <div class="v-card">
                 <div>
-                    <span class="v-card-tag">Home & Decor</span>
+                    <span class="v-card-tag">Accessories</span>
                     <h3 class="brand-lucen">LUCEN</h3>
-                    <p>Modern, refined products requiring crisp, well-lit, and detail-oriented UGC reviews and unboxings.</p>
+                    <p>A refined hair accessory and apparel brand requiring crisp, well-lit, and detail-oriented UGC reviews and styling content.</p>
                 </div>
                 <button class="btn btn-outline" style="width: 100%;">View Campaign</button>
             </div>
         </div>
     </section>
 
-    <!-- NEW: Testimonials / Social Proof -->
+    <!-- RETAINED: Testimonials / Social Proof -->
     <div class="bg-light">
         <section id="testimonials" class="reveal">
             <div class="section-header">
@@ -512,6 +578,7 @@
         </section>
     </div>
 
+    <!-- RETAINED: Calculator -->
     <section id="calculator" class="reveal">
         <div class="calculator-wrapper">
             <div class="calc-left">
@@ -538,7 +605,7 @@
         </div>
     </section>
 
-    <!-- NEW: FAQ Section -->
+    <!-- RETAINED: FAQ Section -->
     <section id="faq" class="reveal">
         <div class="section-header">
             <h2 class="section-title">Frequently Asked Questions</h2>
@@ -563,12 +630,14 @@
         </div>
     </section>
 
+    <!-- RETAINED: Banner CTA -->
     <div class="banner-cta reveal">
         <h2>Want to see Earny in action? <br>Get a quick demo.</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Submit your portfolio. We'll review your content style and set up a call to get you onboarded to your first campaign.</p>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Submit your portfolio. We'll review your content style and set up a call to discuss your growth pipeline.</p>
         <button class="btn">Apply as a Creator</button>
     </div>
 
+    <!-- RETAINED: Mega Footer -->
     <footer>
         <div class="footer-top">
             <div class="footer-grid">
