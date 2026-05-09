@@ -173,6 +173,17 @@
         .mc-accent-2 { background: var(--accent-billo-gradient); border: none; }
         .mc-accent-2 .media-placeholder-text, .mc-accent-2 .media-placeholder-sub { color: var(--text-main); }
 
+        /* --- NEW: PURPOSE & JOURNEY STORY SECTION --- */
+        .story-container { max-width: 1000px; margin: 0 auto; padding: 2rem 5%; }
+        .story-row { display: flex; gap: 4rem; padding: 5rem 0; align-items: flex-start; }
+        .story-label { flex: 0 0 200px; }
+        .story-label h2 { font-size: 2.2rem; color: var(--text-main); margin: 0; letter-spacing: -0.02em; }
+        .story-content { flex: 1; }
+        .story-content h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; color: var(--text-main); letter-spacing: -0.5px; }
+        .story-content p { color: var(--text-muted); line-height: 1.7; margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .story-content p:last-child { margin-bottom: 0; }
+        .story-divider { border: 0; height: 1px; background: var(--border-color); margin: 0; }
+
         /* --- The 3 Pillars --- */
         .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; }
         @media (max-width: 900px) { .pillar-grid { grid-template-columns: 1fr; } }
@@ -354,6 +365,11 @@
             .showcase-content p { text-align: center !important; margin: 0 auto 2rem auto !important; }
             .showcase-visuals { flex: 1; width: 100vw; }
             .media-card { width: 220px; height: 260px; }
+
+            /* Story Section mobile overrides */
+            .story-row { flex-direction: column; gap: 1.5rem; padding: 3rem 0; }
+            .story-label h2 { font-size: 1.8rem; }
+            .story-content h3 { font-size: 1.5rem; }
         }
 
         /* --- Reveal Animation --- */
@@ -462,6 +478,39 @@
                     <div class="media-card mc-accent-2"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
                     <div class="media-card mc-accent-1"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
                     <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: PURPOSE & JOURNEY STORY -->
+    <section id="about" class="reveal">
+        <div class="story-container">
+            <!-- Purpose Row -->
+            <div class="story-row">
+                <div class="story-label">
+                    <h2>Purpose</h2>
+                </div>
+                <div class="story-content">
+                    <h3>To Revolutionize Creator Monetization</h3>
+                    <p>We strive towards a simple but ambitious mission: to reform the creator economy by offering world-class management rooted in experience and real-life application at a fraction of the cost of traditional talent agencies.</p>
+                    <p>Every campaign we produce must adhere to our exacting standards, and our commitment to creators is unparalleled with direct contact to brand owners and a thriving community.</p>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <hr class="story-divider">
+            
+            <!-- Journey Row -->
+            <div class="story-row">
+                <div class="story-label">
+                    <h2>Journey</h2>
+                </div>
+                <div class="story-content">
+                    <h3>Network Growth to Global Entrepreneurial Empowerment</h3>
+                    <p>Earny was founded by Victor Soko, an entrepreneur and developer, and has been responsible for the monetization and careers of highly-driven creators.</p>
+                    <p>Initially specialising in performance marketing and UGC, Earny has expanded its infrastructure to support careers in a wide variety of disciplines including talent management, brand incubation, and eCommerce.</p>
+                    <p>Today, Earny operates as a full-stack growth partner, reflecting its mission statement and ethos: turning rented attention into owned empires.</p>
                 </div>
             </div>
         </div>
