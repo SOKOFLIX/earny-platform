@@ -142,6 +142,37 @@
         .section-title { font-size: 3rem; margin-bottom: 1rem; }
         .section-desc { color: var(--text-muted); max-width: 600px; line-height: 1.6; font-size: 1.1rem; margin: 0 auto; }
 
+        /* --- NEW: INFINITE SCROLL SHOWCASE --- */
+        .showcase-section { display: flex; align-items: center; justify-content: space-between; gap: 4rem; overflow: hidden; padding: 8rem 5%; max-width: 1400px; margin: 0 auto; }
+        .showcase-content { flex: 0 0 35%; z-index: 2; }
+        .showcase-content h2 { text-align: left; margin-bottom: 1.5rem; font-size: 3.5rem; line-height: 1.1; }
+        .showcase-content p { text-align: left; margin: 0 0 2.5rem 0; color: var(--text-muted); font-size: 1.15rem; line-height: 1.6; }
+        
+        .showcase-visuals { flex: 0 0 60%; display: flex; flex-direction: column; gap: 1.5rem; position: relative; width: 100%; min-width: 0;}
+        /* Fade Out Edges for the continuous look */
+        .showcase-visuals::before, .showcase-visuals::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+        .showcase-visuals::before { left: 0; background: linear-gradient(to right, var(--bg-base), transparent); }
+        .showcase-visuals::after { right: 0; background: linear-gradient(to left, var(--bg-base), transparent); }
+
+        .marquee-wrapper { overflow: hidden; display: flex; width: 100%; }
+        .marquee-track { display: flex; gap: 1.5rem; width: max-content; }
+        
+        /* The Math: 100% translation targets exact center point of duplicated content */
+        .track-left { animation: scroll-left 35s linear infinite; }
+        .track-right { animation: scroll-right 35s linear infinite; }
+        
+        @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 0.75rem)); } }
+        @keyframes scroll-right { 0% { transform: translateX(calc(-50% - 0.75rem)); } 100% { transform: translateX(0); } }
+
+        .media-card { width: 280px; height: 340px; border-radius: 20px; background: var(--bg-surface); border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; position: relative; overflow: hidden; flex-shrink: 0; }
+        .media-placeholder-text { position: relative; z-index: 2; font-weight: 800; font-size: 1.2rem; color: var(--text-main); }
+        .media-placeholder-sub { position: relative; z-index: 2; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+        
+        /* Media Card Styling Variations */
+        .mc-accent-1 { background: linear-gradient(135deg, #F4F6F8 0%, #E1E3E5 100%); }
+        .mc-accent-2 { background: var(--accent-billo-gradient); border: none; }
+        .mc-accent-2 .media-placeholder-text, .mc-accent-2 .media-placeholder-sub { color: var(--text-main); }
+
         /* --- The 3 Pillars --- */
         .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; }
         @media (max-width: 900px) { .pillar-grid { grid-template-columns: 1fr; } }
@@ -287,45 +318,42 @@
            MOBILE OPTIMIZATION CORE RULES (MAX-WIDTH: 768px)
            ======================================================= */
         @media (max-width: 768px) {
-            /* Adjust global section padding */
             section { padding: 4rem 5%; }
-            
-            /* Scale Hero for smaller screens */
             .hero { padding: 8rem 1rem 4rem 1rem; }
             h1 { font-size: 2.5rem !important; }
             .subtitle { font-size: 1.1rem; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .hero-buttons .btn { width: 100%; }
             
-            /* Squeeze internal card padding to save lateral space */
             .pillar-card { padding: 2rem 1.5rem; }
             .feature-card { padding: 2.5rem 1.5rem; }
             .step-card { padding: 2.5rem 1.5rem; }
             .t-card { padding: 2rem 1.5rem; }
             
-            /* Dynamic vertical brand cards */
             .v-card { padding: 2.5rem 1.5rem; height: auto; min-height: 400px; }
             
-            /* Calculator scaling */
             .calculator-wrapper { padding: 2rem 1.5rem; }
             .calc-right { padding: 2rem 1.5rem; }
             .calc-left h3 { font-size: 2rem; }
             .calc-result .total { font-size: 2.5rem; }
             
-            /* Banner CTA */
             .banner-cta { padding: 3rem 1.5rem; margin: 4rem auto; }
             .banner-cta h2 { font-size: 2rem; }
             
-            /* Footer alignments */
             .footer-bottom { flex-direction: column; align-items: center; text-align: center; } 
             .footer-legal { text-align: center; } 
             .legal-links { justify-content: center; }
             
-            /* Hide giant blobs on mobile to prevent overflow bugs */
             .blob { display: none; }
-            
-            /* Fix section headers */
             .section-title { font-size: 2rem; }
+
+            /* Showcase mobile overrides */
+            .showcase-section { flex-direction: column-reverse; padding: 4rem 0 !important; gap: 3rem; }
+            .showcase-content { flex: 1; text-align: center; padding: 0 5%; }
+            .showcase-content h2 { text-align: center !important; font-size: 2.5rem !important; }
+            .showcase-content p { text-align: center !important; margin: 0 auto 2rem auto !important; }
+            .showcase-visuals { flex: 1; width: 100vw; }
+            .media-card { width: 220px; height: 260px; }
         }
 
         /* --- Reveal Animation --- */
@@ -397,6 +425,47 @@
             <span class="brand-aurora">AURORA</span>
         </div>
     </div>
+
+    <!-- NEW SECTION: INFINITE SCROLL SHOWCASE -->
+    <section id="showcase" class="showcase-section reveal">
+        <div class="showcase-content">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem; font-size: 3.5rem; line-height: 1.1;">We're Changing Creator Growth Forever.</h2>
+            <p class="section-desc" style="text-align: left; margin: 0 0 2.5rem 0; max-width: 100%;">Practical infrastructure and management that gives you all the tools you need to thrive, scale, and build your own empire in the digital age.</p>
+            <button class="btn btn-lime">View Creator Case Studies</button>
+        </div>
+        <div class="showcase-visuals">
+            <!-- Row 1: Left scrolling -->
+            <div class="marquee-wrapper">
+                <div class="marquee-track track-left">
+                    <!-- Original Set -->
+                    <div class="media-card mc-accent-1"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card mc-accent-2"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <!-- Duplicate Set for Loop -->
+                    <div class="media-card mc-accent-1"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card mc-accent-2"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                </div>
+            </div>
+            <!-- Row 2: Right scrolling -->
+            <div class="marquee-wrapper">
+                <div class="marquee-track track-right">
+                    <!-- Original Set -->
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card mc-accent-2"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card mc-accent-1"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <!-- Duplicate Set for Loop -->
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card mc-accent-2"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card mc-accent-1"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                    <div class="media-card"><span class="media-placeholder-text">Media Slot</span><span class="media-placeholder-sub">Future Highlight</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- The 3 Pillars Section -->
     <div class="bg-light">
