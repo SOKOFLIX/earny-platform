@@ -26,7 +26,6 @@
         .nav-links a { color: #202223; text-decoration: none; margin-left: 2.5rem; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { opacity: 0.6; }
         .nav-actions { display: flex; align-items: center; margin-left: 3rem; }
-        .login-link { font-weight: 500; margin-right: 1.5rem; text-decoration: none; color: #202223; }
         .btn { display: inline-flex; align-items: center; justify-content: center; background: #000000; color: #ffffff; padding: 1rem 2rem; font-size: 1rem; font-weight: 600; text-decoration: none; border-radius: 50px; transition: all 0.2s ease; cursor: pointer; border: none; font-family: 'Poppins', sans-serif; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
         .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
@@ -90,17 +89,26 @@
     <nav id="navbar">
         <a href="index.html" class="logo">earny<span>.</span></a>
         <div class="nav-links">
+            <a href="about.html">About Us</a>
             <a href="index.html#services">The Agency</a>
             <a href="index.html#how-it-works">How it Works</a>
+            <a href="index.html#brands">Portfolio</a>
             <a href="offers.html">Current Offers</a>
         </div>
         <div class="nav-actions">
-            <a href="#" class="login-link">Creator Login</a>
-            <button class="btn">Apply to Roster</button>
+            <a href="https://trycharm.shop/pages/collab" target="_blank" class="btn">Apply to Roster</a>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle Menu">
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 12H21M3 6H21M3 18H21"/></svg>
         </button>
+        <div class="mobile-nav" id="mobileNav" style="display: none;">
+            <a href="about.html" class="mobile-link">About Us</a>
+            <a href="index.html#services" class="mobile-link">The Agency</a>
+            <a href="index.html#how-it-works" class="mobile-link">How it Works</a>
+            <a href="index.html#brands" class="mobile-link">Portfolio</a>
+            <a href="offers.html" class="mobile-link">Current Offers</a>
+            <a href="https://trycharm.shop/pages/collab" target="_blank" class="btn" style="width: 100%; box-sizing: border-box;">Apply to Roster</a>
+        </div>
     </nav>
 
     <header class="page-header">
@@ -200,8 +208,8 @@
                     </ul>
                     <h4 style="margin-top: 2rem;">By feature</h4>
                     <ul>
-                        <li><a href="#">Partnerships hub</a></li>
-                        <li><a href="#">CreativeOps</a></li>
+                        <li><a href="index.html#platform">Partnerships hub</a></li>
+                        <li><a href="index.html#platform">CreativeOps</a></li>
                     </ul>
                 </div>
                 
@@ -210,7 +218,7 @@
                     <ul>
                         <li><a href="#">Creators</a></li>
                         <li><a href="#">Help center</a></li>
-                        <li><a href="#">Success stories</a></li>
+                        <li><a href="index.html#testimonials">Success stories</a></li>
                     </ul>
                 </div>
                 
@@ -259,7 +267,7 @@
 
     <script>
         const mobileBtn = document.getElementById('mobileMenuToggle');
-        const mobileNav = document.querySelector('.nav-links');
+        const mobileNav = document.getElementById('mobileNav');
 
         mobileBtn.addEventListener('click', () => {
             if(mobileNav.style.display === 'flex') {
