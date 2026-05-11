@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Current Offers | Earny Creator Network</title>
+    <title>About Us | Earny Creator Network</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,8 +12,7 @@
             var(--bg-base): #FFFFFF; var(--bg-surface): #F4F6F8; var(--text-main): #202223; 
             var(--text-muted): #6D7175; var(--accent-primary): #008060; var(--accent-dark): #000000;
             var(--accent-billo): #D1FF00; var(--border-color): #E1E3E5; 
-            var(--shadow-subtle): 0 2px 4px rgba(0, 0, 0, 0.04), 0 4px 5px rgba(0, 0, 0, 0.02);
-            var(--shadow-hover): 0 10px 20px rgba(0, 0, 0, 0.08); var(--radius-md): 20px; var(--radius-btn): 50px;
+            var(--radius-lg): 32px; var(--radius-md): 20px; var(--radius-btn): 50px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         html, body { width: 100%; overflow-x: hidden; background-color: #FFFFFF; color: #202223; font-family: 'Inter', sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased; }
@@ -34,33 +33,32 @@
         @media (max-width: 900px) { .nav-links, .nav-actions { display: none; } .mobile-menu-btn { display: block; } }
 
         .page-header { text-align: center; padding: 10rem 1rem 4rem 1rem; max-width: 800px; margin: 0 auto; }
-        .page-header h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; text-transform: uppercase;}
+        .page-header h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.1; }
         .page-header p { font-size: 1.15rem; color: #6D7175; line-height: 1.6; }
 
-        .offers-container { padding: 2rem 5% 8rem 5%; max-width: 1300px; margin: 0 auto; }
-        .offers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-        @media (max-width: 1024px) { .offers-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .offers-grid { grid-template-columns: 1fr; } }
+        .story-container { max-width: 1000px; margin: 0 auto; padding: 2rem 5% 6rem 5%; }
+        .story-row { display: flex; gap: 4rem; padding: 5rem 0; align-items: flex-start; }
+        .story-label { flex: 0 0 200px; }
+        .story-label h2 { font-size: 2.2rem; color: #202223; margin: 0; letter-spacing: -0.02em; }
+        .story-content { flex: 1; }
+        .story-content h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1.5rem; color: #202223; letter-spacing: -0.5px; }
+        .story-content p { color: #6D7175; line-height: 1.7; margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .story-content p:last-child { margin-bottom: 0; }
+        .story-divider { border: 0; height: 1px; background: #E1E3E5; margin: 0; }
+        
+        .core-values { background: #F4F6F8; padding: 6rem 5%; border-top: 1px solid #E1E3E5; border-bottom: 1px solid #E1E3E5;}
+        .values-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .value-card { background: #FFFFFF; padding: 3rem; border-radius: 20px; border: 1px solid #E1E3E5; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); }
+        .value-card h4 { font-size: 1.4rem; margin-bottom: 1rem; }
+        .value-card p { color: #6D7175; font-size: 0.95rem; line-height: 1.6;}
+        
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2.5rem; }
+            .story-row { flex-direction: column; gap: 1.5rem; padding: 3rem 0; }
+            .values-grid { grid-template-columns: 1fr; }
+        }
 
-        .offer-card { position: relative; height: 320px; border-radius: 20px; overflow: hidden; display: flex; align-items: center; justify-content: center; background-color: #202223; background-size: cover; background-position: center; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; }
-        .offer-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); }
-        .offer-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.85) 100%); z-index: 1; transition: background 0.3s ease; }
-        .offer-card:hover .offer-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.75) 100%); }
-
-        .bg-charm { background-image: linear-gradient(45deg, #2a0845 0%, #6441A5 100%); }
-        .bg-lgnd { background-image: linear-gradient(45deg, #111111 0%, #333333 100%); }
-        .bg-lucen { background-image: linear-gradient(45deg, #8baaaa 0%, #ae8b9c 100%); }
-        .bg-goosedrop { background-image: linear-gradient(45deg, #ff0844 0%, #ffb199 100%); }
-        .bg-aurora { background-image: linear-gradient(45deg, #A18CD1 0%, #FBC2EB 100%); }
-
-        .offer-title { color: #ffffff; font-size: 2.2rem; z-index: 2; text-transform: uppercase; letter-spacing: 1px; text-align: center; padding: 0 1rem; width: 100%; }
-        .offer-meta { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; z-index: 2; display: flex; gap: 0.8rem; flex-wrap: wrap; }
-        .pill { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #ffffff; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 500; display: flex; align-items: center; gap: 6px; border: 1px solid rgba(255, 255, 255, 0.2); font-family: 'Inter', sans-serif; }
-        .pill svg { width: 14px; height: 14px; stroke-width: 2.5; }
-        .pill-available { background: #D1FF00; color: #202223; border: none; font-weight: 600; }
-        .pill-full { background: rgba(0, 0, 0, 0.6); color: #A0A0A0; border: 1px solid rgba(255,255,255,0.1); }
-
-        footer { padding: 5rem 5% 2rem 5%; border-top: 1px solid #E1E3E5; background: #FFFFFF; }
+        footer { padding: 5rem 5% 2rem 5%; background: #FFFFFF; }
         .footer-top { display: flex; justify-content: space-between; gap: 4rem; flex-wrap: wrap; }
         .footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; flex: 2; min-width: 600px; }
         @media (max-width: 1024px) { .footer-grid { grid-template-columns: repeat(2, 1fr); min-width: 100%; } .footer-top { flex-direction: column; } }
@@ -82,7 +80,7 @@
         .legal-links a { color: #202223; text-decoration: none; font-size: 0.85rem; font-weight: 600; }
         .legal-links a:hover { opacity: 0.6; }
         .footer-legal p { color: #6D7175; font-size: 0.8rem; }
-        @media (max-width: 768px) { .page-header h1 { font-size: 2.5rem; } .footer-bottom { flex-direction: column; align-items: center; text-align: center; } .footer-legal { text-align: center; } .legal-links { justify-content: center; } }
+        @media (max-width: 768px) { .footer-bottom { flex-direction: column; align-items: center; text-align: center; } .footer-legal { text-align: center; } .legal-links { justify-content: center; } }
     </style>
 </head>
 <body>
@@ -104,90 +102,53 @@
     </nav>
 
     <header class="page-header">
-        <h1>Open Roles</h1>
-        <p>Partner with high-converting brands. Browse our active roster below to find campaigns currently accepting new creators.</p>
+        <h1>About Earny.</h1>
+        <p>From a performance network to a full-stack creator scaling agency. We turn rented attention into owned empires.</p>
     </header>
 
-    <main class="offers-container">
-        <div class="offers-grid">
-            
-            <a href="https://trycharm.shop/pages/collab" target="_blank" class="offer-card bg-charm">
-                <div class="offer-overlay"></div>
-                <h3 class="offer-title">CHARM</h3>
-                <div class="offer-meta">
-                    <span class="pill pill-available">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        Available
-                    </span>
-                    <span class="pill">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                        10% Rev Split
-                    </span>
-                </div>
-            </a>
-
-            <div class="offer-card bg-lgnd">
-                <div class="offer-overlay"></div>
-                <h3 class="offer-title" style="font-style: italic; font-weight: 900;">LGND</h3>
-                <div class="offer-meta">
-                    <span class="pill pill-full">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        Roster Full
-                    </span>
-                    <span class="pill">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                        40% Rev Split
-                    </span>
-                </div>
+    <main class="story-container">
+        <div class="story-row">
+            <div class="story-label">
+                <h2>Purpose</h2>
             </div>
-
-            <div class="offer-card bg-goosedrop">
-                <div class="offer-overlay"></div>
-                <h3 class="offer-title" style="text-transform: lowercase;">goosedrop</h3>
-                <div class="offer-meta">
-                    <span class="pill pill-full">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        Roster Full
-                    </span>
-                    <span class="pill">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                        40% Rev Split
-                    </span>
-                </div>
+            <div class="story-content">
+                <h3>To Revolutionize Creator Monetization</h3>
+                <p>We strive towards a simple but ambitious mission: to reform the creator economy by offering world-class management rooted in experience and real-life application, at a fraction of the cost of traditional talent agencies.</p>
+                <p>Every campaign we produce must adhere to our exacting standards, and our commitment to creators is unparalleled with direct contact to brand owners and a thriving performance community.</p>
             </div>
-
-            <div class="offer-card bg-lucen">
-                <div class="offer-overlay"></div>
-                <h3 class="offer-title" style="letter-spacing: 4px; font-weight: 500;">LUCEN</h3>
-                <div class="offer-meta">
-                    <span class="pill pill-full">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        Roster Full
-                    </span>
-                    <span class="pill">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                        40% Rev Split
-                    </span>
-                </div>
+        </div>
+        
+        <hr class="story-divider">
+        
+        <div class="story-row">
+            <div class="story-label">
+                <h2>Journey</h2>
             </div>
-
-            <div class="offer-card bg-aurora">
-                <div class="offer-overlay"></div>
-                <h3 class="offer-title">AURORA</h3>
-                <div class="offer-meta">
-                    <span class="pill pill-full">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                        Roster Full
-                    </span>
-                    <span class="pill">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                        40% Rev Split
-                    </span>
-                </div>
+            <div class="story-content">
+                <h3>Network Growth to Global Entrepreneurial Empowerment</h3>
+                <p>Earny was founded by Victor Soko, an entrepreneur and developer, and has been responsible for the monetization and careers of highly-driven creators across South Africa and the globe.</p>
+                <p>Initially specialising in performance marketing and UGC, Earny has expanded its infrastructure to support careers in a wide variety of disciplines including talent management, brand incubation, and eCommerce fulfillment.</p>
+                <p>Today, Earny operates as a full-stack growth partner, managing internal brands like LGND, goosedrop, and LUCEN, while empowering creators to finally own their audience.</p>
             </div>
-
         </div>
     </main>
+
+    <div class="core-values">
+        <div class="values-grid">
+            <div class="value-card">
+                <h4>Data-Driven</h4>
+                <p>We don't guess. Every campaign, hook, and brand pitch is backed by rigid internal CreativeOps data to ensure maximum conversion.</p>
+            </div>
+            <div class="value-card">
+                <h4>Creator First</h4>
+                <p>Traditional agencies take massive cuts while doing minimal work. Our 40% rev-split and incubation pipelines ensure creators get paid what they are actually worth.</p>
+            </div>
+            <div class="value-card">
+                <h4>Ownership</h4>
+                <p>Affiliate marketing is just the beginning. Our end goal is to transition our top performers from selling our products, to launching and scaling their own.</p>
+            </div>
+        </div>
+    </div>
 
     <footer>
         <div class="footer-top">
@@ -200,8 +161,8 @@
                     </ul>
                     <h4 style="margin-top: 2rem;">By feature</h4>
                     <ul>
-                        <li><a href="#">Partnerships hub</a></li>
-                        <li><a href="#">CreativeOps</a></li>
+                        <li><a href="index.html#platform">Partnerships hub</a></li>
+                        <li><a href="index.html#platform">CreativeOps</a></li>
                     </ul>
                 </div>
                 
@@ -210,7 +171,7 @@
                     <ul>
                         <li><a href="#">Creators</a></li>
                         <li><a href="#">Help center</a></li>
-                        <li><a href="#">Success stories</a></li>
+                        <li><a href="index.html#testimonials">Success stories</a></li>
                     </ul>
                 </div>
                 
