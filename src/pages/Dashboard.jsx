@@ -21,7 +21,6 @@ import {
   Lock 
 } from "lucide-react";
 
-// Import your components
 import LessonView from "./LessonView";
 import ConfirmedSales from "./ConfirmedSales";
 import ProfileSettings from "./ProfileSettings";
@@ -49,29 +48,31 @@ const StoreSetup = () => {
     return (
       <button 
         onClick={() => toggleStep(stateKey)}
-        className="w-full flex items-center justify-between p-3 border-b border-white/5 hover:bg-white/5 transition-colors group text-left"
+        className="w-full flex items-center justify-between p-4 border-b border-white/5 hover:bg-emerald-500/5 transition-all group text-left"
       >
         <div className="flex items-center gap-3">
           {isDone ? (
-            <CheckCircle2 className="w-4 h-4 text-white" />
+            <CheckCircle2 className="w-5 h-5 text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
           ) : (
-            <Circle className="w-4 h-4 text-white/30 group-hover:text-white/50" />
+            <Circle className="w-5 h-5 text-white/30 group-hover:text-emerald-500/50 transition-colors" />
           )}
-          <span className={`text-sm ${isDone ? 'text-white/50 line-through' : 'text-white/90'}`}>
+          <span className={`text-sm ${isDone ? 'text-white/40 line-through' : 'text-white/90 group-hover:text-white'}`}>
             {label}
           </span>
         </div>
         {isRequired && !isDone && (
-          <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest bg-white/5 px-2 py-1">Required</span>
+          <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-2 py-1">Required</span>
         )}
       </button>
     );
   };
 
   return (
-    <div className="p-8 md:p-12 max-w-5xl mx-auto space-y-12 pb-24">
-      <header className="space-y-4 border-b border-white/10 pb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 bg-[#0a0a0a] text-xs font-medium text-white/60 uppercase tracking-widest">
+    <div className="p-8 md:p-12 max-w-5xl mx-auto space-y-12 pb-24 relative">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/[0.02] blur-[120px] rounded-full pointer-events-none" />
+      
+      <header className="space-y-4 border-b border-white/10 pb-8 relative z-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 border border-emerald-500/30 bg-emerald-500/10 text-xs font-bold text-emerald-400 uppercase tracking-widest">
           <Lock className="w-3 h-3" />
           <span>Operational Dashboard</span>
         </div>
@@ -81,10 +82,10 @@ const StoreSetup = () => {
         </p>
       </header>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden group hover:border-emerald-500/30 transition-colors">
           <div className="p-6 border-b border-white/10 flex items-center gap-3">
-            <ShoppingCart className="w-5 h-5 text-white/60" />
+            <ShoppingCart className="w-5 h-5 text-emerald-400" />
             <h3 className="font-semibold tracking-tight">Shopify Core</h3>
           </div>
           <div className="p-2">
@@ -94,9 +95,9 @@ const StoreSetup = () => {
           </div>
         </div>
 
-        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden group hover:border-emerald-500/30 transition-colors">
           <div className="p-6 border-b border-white/10 flex items-center gap-3">
-            <CreditCard className="w-5 h-5 text-white/60" />
+            <CreditCard className="w-5 h-5 text-emerald-400" />
             <h3 className="font-semibold tracking-tight">Payment Gateways (ZAR)</h3>
           </div>
           <div className="p-2">
@@ -106,9 +107,9 @@ const StoreSetup = () => {
           </div>
         </div>
 
-        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden group hover:border-emerald-500/30 transition-colors">
           <div className="p-6 border-b border-white/10 flex items-center gap-3">
-            <Package className="w-5 h-5 text-white/60" />
+            <Package className="w-5 h-5 text-emerald-400" />
             <h3 className="font-semibold tracking-tight">Sourcing & Fulfillment</h3>
           </div>
           <div className="p-2">
@@ -117,9 +118,9 @@ const StoreSetup = () => {
           </div>
         </div>
 
-        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden group hover:border-emerald-500/30 transition-colors">
           <div className="p-6 border-b border-white/10 flex items-center gap-3">
-            <Truck className="w-5 h-5 text-white/60" />
+            <Truck className="w-5 h-5 text-emerald-400" />
             <h3 className="font-semibold tracking-tight">Local Logistics (Mzansi)</h3>
           </div>
           <div className="p-2">
@@ -135,7 +136,6 @@ const StoreSetup = () => {
 
 
 export default function Dashboard({ user, profile }) {
-  // Logic: If they are a high earner, default their tab to 'upsell', otherwise 'curriculum'
   const isHighEarner = profile?.revenue === "R100,000+";
   const [activeTab, setActiveTab] = useState(isHighEarner ? "upsell" : "curriculum");
   const [completedCount, setCompletedCount] = useState(0);
@@ -157,20 +157,23 @@ export default function Dashboard({ user, profile }) {
 
   const progressPercentage = totalTasks > 0 ? Math.round((completedCount / totalTasks) * 100) : 0;
 
-  const NavButton = ({ id, icon: Icon, label }) => (
-    <button 
-      onClick={() => setActiveTab(id)}
-      className={`w-full flex items-center justify-between px-3 py-2.5 text-sm transition-colors rounded-md ${
-        activeTab === id ? 'bg-white/10 text-white' : 'text-white/60 hover:text-white hover:bg-white/5'
-      }`}
-    >
-      <div className="flex items-center gap-3">
-        <Icon className="w-4 h-4" />
-        <span>{label}</span>
-      </div>
-      {activeTab === id && <ChevronRight className="w-3 h-3" />}
-    </button>
-  );
+  const NavButton = ({ id, icon: Icon, label }) => {
+    const isActive = activeTab === id;
+    return (
+      <button 
+        onClick={() => setActiveTab(id)}
+        className={`w-full flex items-center justify-between px-3 py-2.5 text-sm transition-all rounded-md ${
+          isActive ? 'bg-emerald-500/10 text-emerald-400 font-medium' : 'text-white/60 hover:text-white hover:bg-white/5'
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <Icon className="w-4 h-4" />
+          <span>{label}</span>
+        </div>
+        {isActive && <ChevronRight className="w-3 h-3" />}
+      </button>
+    );
+  };
 
   return (
     <div className="flex h-screen bg-[#050505] text-white overflow-hidden">
@@ -183,34 +186,31 @@ export default function Dashboard({ user, profile }) {
           </div>
           
           <nav className="p-4 space-y-6">
-            {/* Core Execution */}
             <div>
-              <div className="px-3 mb-2 text-xs font-medium text-white/40 uppercase tracking-widest">Execution</div>
+              <div className="px-3 mb-2 text-xs font-bold text-white/40 uppercase tracking-widest">Execution</div>
               <div className="space-y-1">
                 <NavButton id="curriculum" icon={BookOpen} label="Curriculum" />
                 <NavButton id="store" icon={Store} label="Store Architecture" />
               </div>
             </div>
 
-            {/* Growth & Tracking */}
             <div>
-              <div className="px-3 mb-2 text-xs font-medium text-white/40 uppercase tracking-widest">Growth</div>
+              <div className="px-3 mb-2 text-xs font-bold text-white/40 uppercase tracking-widest">Growth</div>
               <div className="space-y-1">
                 <NavButton id="sales" icon={Banknote} label="Sales Ledger" />
                 <NavButton id="upsell" icon={Crown} label="Inner Circle" />
               </div>
             </div>
 
-            {/* Account & Community */}
             <div>
-              <div className="px-3 mb-2 text-xs font-medium text-white/40 uppercase tracking-widest">Account</div>
+              <div className="px-3 mb-2 text-xs font-bold text-white/40 uppercase tracking-widest">Account</div>
               <div className="space-y-1">
                 <NavButton id="profile" icon={UserIcon} label="Settings" />
                 <a 
                   href="https://discord.com" 
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors rounded-md"
+                  className="w-full flex items-center justify-between px-3 py-2.5 text-sm text-white/60 hover:text-emerald-400 hover:bg-emerald-500/5 transition-all rounded-md"
                 >
                   <div className="flex items-center gap-3">
                     <MessageSquare className="w-4 h-4" />
@@ -225,13 +225,13 @@ export default function Dashboard({ user, profile }) {
         {/* Progress & User Actions */}
         <div className="p-4 border-t border-white/10 shrink-0 bg-[#0a0a0a]">
           <div className="mb-4">
-            <div className="flex justify-between text-xs text-white/60 mb-2 font-medium uppercase tracking-widest">
+            <div className="flex justify-between text-xs text-white/60 mb-2 font-bold uppercase tracking-widest">
               <span>Completion</span>
-              <span>{progressPercentage}%</span>
+              <span className="text-emerald-400">{progressPercentage}%</span>
             </div>
-            <div className="h-1 bg-white/10 w-full overflow-hidden">
+            <div className="h-1.5 bg-white/10 w-full overflow-hidden rounded-full">
               <div 
-                className="h-full bg-white transition-all duration-500 ease-out" 
+                className="h-full bg-emerald-500 transition-all duration-500 ease-out shadow-[0_0_8px_rgba(16,185,129,0.6)]" 
                 style={{ width: `${progressPercentage}%` }} 
               />
             </div>
@@ -256,7 +256,7 @@ export default function Dashboard({ user, profile }) {
             <span className="text-sm font-medium text-white/90">
               Welcome back, {profile?.name?.split(' ')[0] || "Hustler"}.
             </span>
-            <span className="text-xs text-white/40 uppercase tracking-widest mt-1">
+            <span className="text-xs text-emerald-400 font-bold uppercase tracking-widest mt-1">
               {isHighEarner ? "Inner Circle Candidate" : "90-Day Masterclass"}
             </span>
           </div>
