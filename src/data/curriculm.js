@@ -3,7 +3,7 @@ export const curriculum = [
     day: 1,
     title: "The Foundation",
     description: "Understanding the high-ticket dropshipping model in the South African context.",
-    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", // Placeholder MP3
+    audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     notes: [
       "Dropshipping is a fulfillment method where you don't keep products in stock. You are the digital middleman.",
       "In Mzansi, the key to success is managing shipping times (expect 7-12 days) and providing excellent localized customer support.",

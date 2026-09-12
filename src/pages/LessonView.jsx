@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { Play, Pause, CheckCircle2, Circle, Lightbulb, Volume2 } from "lucide-react";
-import { curriculum } from "../data/curriculum";
+import { curriculum } from "../data/curriculum.js";
 
 // Minimalist Audio Player Component
 const AudioPlayer = ({ url, title }) => {
