@@ -10,25 +10,134 @@ import {
   ChevronRight, 
   Banknote, 
   User as UserIcon, 
-  Crown 
+  Crown,
+  ShoppingCart, 
+  CreditCard, 
+  Package, 
+  Truck, 
+  CheckCircle2, 
+  Circle, 
+  ExternalLink,
+  Lock 
 } from "lucide-react";
 
-// Import all your components
+// Import your components
 import LessonView from "./LessonView";
 import ConfirmedSales from "./ConfirmedSales";
 import ProfileSettings from "./ProfileSettings";
 import PremiumUpsell from "./PremiumUpsell";
-import { curriculum } from "../data/curriculum";
-// If you extracted StoreSetup into its own file, import it here:
-// import StoreSetup from "../components/StoreSetup";
+import { curriculum } from "../data/curriculum.js";
 
-// Quick inline StoreSetup placeholder if you kept it in the same file earlier
-const StoreSetup = () => (
-  <div className="p-8 md:p-12"><h2 className="text-3xl font-bold">Store Architecture</h2><p className="text-white/60">Store setup component loaded.</p></div>
-);
+// --- INLINE STORE SETUP COMPONENT ---
+const StoreSetup = () => {
+  const [setupProgress, setSetupProgress] = useState({
+    shopifyLinked: false,
+    yocoVerified: false,
+    payfastVerified: false,
+    cjDropshipping: true, 
+    autoDS: false,
+    courierGuy: false,
+    buffaloLogistics: false,
+  });
 
-export default function Dashboard({ user }) {
-  const [activeTab, setActiveTab] = useState("curriculum");
+  const toggleStep = (key) => {
+    setSetupProgress(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const StepItem = ({ label, stateKey, isRequired = false }) => {
+    const isDone = setupProgress[stateKey];
+    return (
+      <button 
+        onClick={() => toggleStep(stateKey)}
+        className="w-full flex items-center justify-between p-3 border-b border-white/5 hover:bg-white/5 transition-colors group text-left"
+      >
+        <div className="flex items-center gap-3">
+          {isDone ? (
+            <CheckCircle2 className="w-4 h-4 text-white" />
+          ) : (
+            <Circle className="w-4 h-4 text-white/30 group-hover:text-white/50" />
+          )}
+          <span className={`text-sm ${isDone ? 'text-white/50 line-through' : 'text-white/90'}`}>
+            {label}
+          </span>
+        </div>
+        {isRequired && !isDone && (
+          <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest bg-white/5 px-2 py-1">Required</span>
+        )}
+      </button>
+    );
+  };
+
+  return (
+    <div className="p-8 md:p-12 max-w-5xl mx-auto space-y-12 pb-24">
+      <header className="space-y-4 border-b border-white/10 pb-8">
+        <div className="inline-flex items-center gap-2 px-3 py-1 border border-white/10 bg-[#0a0a0a] text-xs font-medium text-white/60 uppercase tracking-widest">
+          <Lock className="w-3 h-3" />
+          <span>Operational Dashboard</span>
+        </div>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white">Store Architecture</h2>
+        <p className="text-white/60 font-light max-w-2xl text-lg">
+          Track your backend infrastructure. Connect your storefront, payment gateways, and logistics partners to prepare for launch.
+        </p>
+      </header>
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+          <div className="p-6 border-b border-white/10 flex items-center gap-3">
+            <ShoppingCart className="w-5 h-5 text-white/60" />
+            <h3 className="font-semibold tracking-tight">Shopify Core</h3>
+          </div>
+          <div className="p-2">
+            <StepItem label="Create Shopify Partner Account" stateKey="shopifyLinked" isRequired />
+            <StepItem label="Connect Custom Domain (.co.za or .com)" stateKey="domainConnected" isRequired />
+            <StepItem label="Configure Store Policies (TOS, Refunds)" stateKey="policiesDone" isRequired />
+          </div>
+        </div>
+
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+          <div className="p-6 border-b border-white/10 flex items-center gap-3">
+            <CreditCard className="w-5 h-5 text-white/60" />
+            <h3 className="font-semibold tracking-tight">Payment Gateways (ZAR)</h3>
+          </div>
+          <div className="p-2">
+            <StepItem label="Submit FICA Documents to Yoco" stateKey="yocoVerified" isRequired />
+            <StepItem label="Install Yoco Payment Gateway App" stateKey="yocoInstalled" isRequired />
+            <StepItem label="Create PayFast Merchant Account" stateKey="payfastVerified" />
+          </div>
+        </div>
+
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+          <div className="p-6 border-b border-white/10 flex items-center gap-3">
+            <Package className="w-5 h-5 text-white/60" />
+            <h3 className="font-semibold tracking-tight">Sourcing & Fulfillment</h3>
+          </div>
+          <div className="p-2">
+            <StepItem label="Connect CJdropshipping App" stateKey="cjDropshipping" isRequired />
+            <StepItem label="Configure AutoDS Automation" stateKey="autoDS" />
+          </div>
+        </div>
+
+        <div className="border border-white/10 bg-[#0a0a0a] overflow-hidden">
+          <div className="p-6 border-b border-white/10 flex items-center gap-3">
+            <Truck className="w-5 h-5 text-white/60" />
+            <h3 className="font-semibold tracking-tight">Local Logistics (Mzansi)</h3>
+          </div>
+          <div className="p-2">
+            <StepItem label="Register with The Courier Guy (BobGo)" stateKey="courierGuy" />
+            <StepItem label="Set up Buffalo Logistics for imports" stateKey="buffaloLogistics" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+// --- END STORE SETUP COMPONENT ---
+
+
+export default function Dashboard({ user, profile }) {
+  // Logic: If they are a high earner, default their tab to 'upsell', otherwise 'curriculum'
+  const isHighEarner = profile?.revenue === "R100,000+";
+  const [activeTab, setActiveTab] = useState(isHighEarner ? "upsell" : "curriculum");
   const [completedCount, setCompletedCount] = useState(0);
 
   const totalTasks = curriculum.reduce((acc, lesson) => acc + lesson.actionItems.length, 0);
@@ -139,12 +248,28 @@ export default function Dashboard({ user }) {
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto relative">
-        {activeTab === "curriculum" && <LessonView user={user} />}
-        {activeTab === "store" && <StoreSetup />}
-        {activeTab === "sales" && <ConfirmedSales />}
-        {activeTab === "upsell" && <PremiumUpsell />}
-        {activeTab === "profile" && <ProfileSettings user={user} />}
+      <main className="flex-1 flex flex-col relative overflow-hidden">
+        
+        {/* Personalized Top Header */}
+        <header className="h-20 border-b border-white/10 px-8 flex items-center justify-between shrink-0 bg-[#050505]/80 backdrop-blur-md z-10">
+          <div className="flex flex-col justify-center h-full">
+            <span className="text-sm font-medium text-white/90">
+              Welcome back, {profile?.name?.split(' ')[0] || "Hustler"}.
+            </span>
+            <span className="text-xs text-white/40 uppercase tracking-widest mt-1">
+              {isHighEarner ? "Inner Circle Candidate" : "90-Day Masterclass"}
+            </span>
+          </div>
+        </header>
+
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto">
+          {activeTab === "curriculum" && <LessonView user={user} />}
+          {activeTab === "store" && <StoreSetup />}
+          {activeTab === "sales" && <ConfirmedSales />}
+          {activeTab === "upsell" && <PremiumUpsell />}
+          {activeTab === "profile" && <ProfileSettings user={user} profile={profile} />}
+        </div>
       </main>
     </div>
   );
