@@ -18,11 +18,19 @@ import {
 } from 'lucide-react';
 
 // 1. Initialize Firebase OUTSIDE the component
-const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+const firebaseConfig = {
+  apiKey: "AIzaSyAeiDPqbf23P2_O6iex-eZZ6752NRoDZbc",
+  authDomain: "earny-477d3.firebaseapp.com",
+  projectId: "earny-477d3",
+  storageBucket: "earny-477d3.firebasestorage.app",
+  messagingSenderId: "741319438211",
+  appId: "1:741319438211:web:d3144e11f41641532b10b6",
+  measurementId: "G-F77PJ7QVSK"
+};
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'dropshipping-course-app';
+const appId = 'dropshipping-course-app';
 
 // Course Data Structure
 const CURRICULUM = {
