@@ -17,7 +17,6 @@ export default function App() {
       setUser(currentUser);
       
       if (currentUser) {
-        // Check if user has completed onboarding
         try {
           const docRef = doc(db, "artifacts", "earny-platform", "users", currentUser.uid, "profile", "data");
           const docSnap = await getDoc(docRef);
@@ -25,7 +24,7 @@ export default function App() {
           if (docSnap.exists() && docSnap.data().onboardingComplete) {
             setProfile(docSnap.data());
           } else {
-            setProfile(null); // Triggers onboarding
+            setProfile(null);
           }
         } catch (error) {
           console.error("Error fetching profile:", error);
@@ -45,7 +44,6 @@ export default function App() {
     );
   }
 
-  // SPA Routing Logic
   if (!user) {
     return <LandingPage />;
   }

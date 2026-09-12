@@ -52,16 +52,14 @@ export default function Onboarding({ user, onComplete }) {
 
   return (
     <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-4 relative overflow-hidden text-white">
-      {/* Emerald Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/[0.03] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-xl z-10">
-        <div className="mb-8 flex items-center gap-2 text-xs font-medium text-emerald-400 uppercase tracking-widest">
+        <div className="mb-8 flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-widest">
           <span>Step {step} of {totalSteps}</span>
           <div className="h-px bg-emerald-500/20 flex-1 ml-4" />
         </div>
 
-        {/* STEP 1: Identity & Discord */}
         {step === 1 && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div>
@@ -105,7 +103,6 @@ export default function Onboarding({ user, onComplete }) {
           </div>
         )}
 
-        {/* STEP 2: The Goal */}
         {step === 2 && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div>
@@ -128,7 +125,6 @@ export default function Onboarding({ user, onComplete }) {
           </div>
         )}
 
-        {/* STEP 3: Experience */}
         {step === 3 && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div>
@@ -160,7 +156,6 @@ export default function Onboarding({ user, onComplete }) {
           </div>
         )}
 
-        {/* STEP 4: Store Details (Conditional) */}
         {step === 4 && formData.hasStore && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div>
@@ -181,7 +176,7 @@ export default function Onboarding({ user, onComplete }) {
               </div>
 
               <div className="space-y-3">
-                <label className="text-sm font-medium text-white/60 uppercase tracking-widest">All-Time Revenue (ZAR)</label>
+                <label className="text-sm font-bold text-white/60 uppercase tracking-widest">All-Time Revenue (ZAR)</label>
                 <div className="grid grid-cols-1 gap-3">
                   {["R0 - R10,000", "R10,000 - R100,000", "R100,000+"].map((tier) => (
                     <button 
@@ -207,8 +202,7 @@ export default function Onboarding({ user, onComplete }) {
           </div>
         )}
 
-        {/* FINAL STEP: Confirmation */}
-        {(step === 4 && !formData.hasStore) || step === 5 ? (
+        {((step === 4 && !formData.hasStore) || step === 5) && (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500 text-center py-12">
             <div className="w-20 h-20 mx-auto rounded-full bg-emerald-500/10 flex items-center justify-center mb-6">
               <CheckCircle2 className="w-10 h-10 text-emerald-400" />
@@ -227,7 +221,7 @@ export default function Onboarding({ user, onComplete }) {
               {isSaving ? <Loader2 className="w-5 h-5 animate-spin text-black" /> : <span>Enter Dashboard</span>}
             </button>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );
