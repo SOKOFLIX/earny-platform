@@ -1,1 +1,22 @@
 @import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-[#050505] text-white antialiased selection:bg-white/20;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-[#1a1a1a] rounded-full border border-[#050505];
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-[#2a2a2a];
+}

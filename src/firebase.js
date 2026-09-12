@@ -1,15 +1,15 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
+// Replace with your actual Vercel/Firebase environment variables
 const firebaseConfig = {
-  apiKey: "AIzaSyAeiDPqbf23P2_O6iex-eZZ6752NRoDZbc",
-  authDomain: "earny-477d3.firebaseapp.com",
-  projectId: "earny-477d3",
-  storageBucket: "earny-477d3.firebasestorage.app",
-  messagingSenderId: "741319438211",
-  appId: "1:741319438211:web:d3144e11f41641532b10b6",
-  measurementId: "G-F77PJ7QVSK"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
